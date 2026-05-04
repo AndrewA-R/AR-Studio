@@ -63,16 +63,18 @@ const ptsToPath = (pts: Pt[]) => pts.length
   ? "M " + pts.map(p => `${p.x.toFixed(2)} ${p.y.toFixed(2)}`).join(" L ")
   : "";
 
+// Round to a fixed precision to keep server and client serialization identical.
+// Without this, React's number→string for SVG attributes can drift in the
+// last digit (e.g. 241.0705084655078 vs 241.07050846550777) and trip
+// hydration mismatch warnings.
+const fx = (n: number) => n.toFixed(3);
+
 export function CarouselGraphic({ paused: pausedProp = false }: { paused?: boolean }) {
-  // Mount gate — the SVG positions are floating-point and animated, so SSR
-  // and client first-render don't match. Render the SVG only after mount.
-  const [mounted, setMounted] = useState(false);
   const [inView, setInView] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
     const m = window.matchMedia("(prefers-reduced-motion: reduce)");
     setReducedMotion(m.matches);
     const onChange = () => setReducedMotion(m.matches);
@@ -144,10 +146,6 @@ export function CarouselGraphic({ paused: pausedProp = false }: { paused?: boole
     return { x, y, z, a, t, label: L.label, k: i };
   });
 
-  if (!mounted) {
-    return <div ref={rootRef} className="relative w-full" aria-hidden="true" style={{ aspectRatio: `${W} / ${H}` }} />;
-  }
-
   return (
     <div ref={rootRef} className="relative w-full" aria-hidden="true" style={{ aspectRatio: `${W} / ${H}` }}>
       <svg viewBox={`0 0 ${W} ${H}`} width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style={{ display: "block" }}>
@@ -160,7 +158,7 @@ export function CarouselGraphic({ paused: pausedProp = false }: { paused?: boole
         {anchors.filter(a => a.z < 0).map((a, i) => {
           const op = Math.max(0, 0.22 + a.z * 0.20);
           return (
-            <text key={`bt${i}`} x={a.x} y={a.y + 4} textAnchor="middle" opacity={op}
+            <text key={`bt${i}`} x={fx(a.x)} y={fx(a.y + 4)} textAnchor="middle" opacity={fx(op)}
               fontFamily='"Newsreader", Georgia, serif' fontSize="13" fill={fg2}>
               {a.label}
             </text>
@@ -187,10 +185,10 @@ export function CarouselGraphic({ paused: pausedProp = false }: { paused?: boole
           const labelX = a.x + drift * 6;
           const labelY = a.y - 8;
           return (
-            <g key={`ft${i}`} opacity={op}>
-              <circle cx={a.x} cy={a.y} r="3" fill={accent} />
-              <circle cx={a.x} cy={a.y} r="6" fill="none" stroke={accent} strokeWidth="0.6" opacity="0.4" />
-              <text x={labelX} y={labelY} textAnchor="middle"
+            <g key={`ft${i}`} opacity={fx(op)}>
+              <circle cx={fx(a.x)} cy={fx(a.y)} r="3" fill={accent} />
+              <circle cx={fx(a.x)} cy={fx(a.y)} r="6" fill="none" stroke={accent} strokeWidth="0.6" opacity="0.4" />
+              <text x={fx(labelX)} y={fx(labelY)} textAnchor="middle"
                 fontFamily='"Newsreader", Georgia, serif' fontSize="13" fill={fg}>
                 {a.label}
               </text>
