@@ -7,7 +7,6 @@ export function Masthead({ tagline = "Integrated marketing, on one team" }: { ta
     ["Services", "/services"],
     ["Carousel", "/carousel"],
     ["Thinking", "/thinking"],
-    ["Studio", "/#studio"],
   ];
   return (
     <header className="bg-paper border-b-2 border-ink">
