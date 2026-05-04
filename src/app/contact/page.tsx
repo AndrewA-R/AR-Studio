@@ -1,0 +1,37 @@
+import { PageShell } from "@/components/PageShell";
+import { PageHero } from "@/components/PageHero";
+import { ContactForm } from "@/components/ContactForm";
+
+export const metadata = { title: "Contact" };
+
+export default async function ContactPage() {
+  return (
+    <PageShell>
+      <PageHero
+        kicker="§ Get in touch"
+        title="Start a"
+        titleAccent="conversation."
+        lede="Most engagements start with a single conversation — what you’re trying to do, what’s in your way, whether we’re a fit. No brief required. If we’re not the right team, we’ll point you at one that is."
+      />
+      <section className="bg-paper px-[clamp(24px,4vw,56px)] py-24">
+        <div className="max-w-content mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
+          <aside className="space-y-6">
+            <div>
+              <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Direct</div>
+              <a href="mailto:hello@a-r.studio" className="block mt-2 text-ink border-b border-ink pb-1 no-underline w-fit">hello@a-r.studio</a>
+            </div>
+            <div>
+              <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Studio</div>
+              <div className="mt-2 text-ink-600">Los Angeles<br /><span className="text-ink-400">by appointment</span></div>
+            </div>
+            <div>
+              <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Roster</div>
+              <a href="/join-our-roster" className="block mt-2 text-ink border-b border-ink pb-1 no-underline w-fit">Join the roster →</a>
+            </div>
+          </aside>
+          <ContactForm />
+        </div>
+      </section>
+    </PageShell>
+  );
+}

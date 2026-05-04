@@ -1,0 +1,8 @@
+node_modules
+.next
+.env*.local
+.DS_Store
+.vercel
+*.log
+src/sanity/extract.json
+sanity-typegen.json
