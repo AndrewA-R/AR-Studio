@@ -25,7 +25,11 @@ export function Founders({
             {headline}<span className="italic text-purple-700">{headlineAccent}</span>
           </h2>
         </div>
-        <p className="max-w-[70ch] mb-14 text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6 }}>{copy}</p>
+        {/* Body copy aligned under the headline (matches the headline column of the grid above) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-x-20 mb-14">
+          <div aria-hidden className="hidden lg:block" />
+          <p className="m-0 max-w-[70ch] text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6 }}>{copy}</p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 border-t-2 border-ink">
           {founders.map((p, i) => (

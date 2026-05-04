@@ -69,7 +69,10 @@ const ptsToPath = (pts: Pt[]) => pts.length
 // hydration mismatch warnings.
 const fx = (n: number) => n.toFixed(3);
 
-export function CarouselGraphic({ paused: pausedProp = false }: { paused?: boolean }) {
+export function CarouselGraphic({
+  paused: pausedProp = false,
+  variant = "dark",
+}: { paused?: boolean; variant?: "dark" | "light" }) {
   const [inView, setInView] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -94,15 +97,15 @@ export function CarouselGraphic({ paused: pausedProp = false }: { paused?: boole
 
   const phase = useRotation(72000, pausedProp || reducedMotion || !inView);
 
-  // Dark-variant palette
-  const fg = "#E5DFF2";
-  const fg2 = "#B3A6DC";
-  const helixColor = "#B3A6DC";
-  const accent = "#FDFCF8";
-  const back = "rgba(179,166,220,0.5)";
-  const fill = "#1B103F";
-  const stroke = "#B3A6DC";
-  const tint = "#FDFCF8";
+  // Palette — dark plate (purple-950 bg) vs. light plate (paper bg)
+  const dark = variant === "dark";
+  const fg = dark ? "#E5DFF2" : "#111010";
+  const fg2 = dark ? "#B3A6DC" : "#6E6B78";
+  const helixColor = dark ? "#B3A6DC" : "#3D2B82";
+  const accent = dark ? "#FDFCF8" : "#3D2B82";
+  const back = dark ? "rgba(179,166,220,0.5)" : "rgba(61,43,130,0.32)";
+  const fill = dark ? "#1B103F" : "#F6F3EC";
+  const stroke = dark ? "#B3A6DC" : "#3D2B82";
 
   const W = 720, H = 1000;
   const cx = W / 2;

@@ -133,6 +133,20 @@ async function main() {
     });
   }
 
+  const capabilities = [
+    ["build", "Build Campaigns", "Strategy, briefs, calendars, and creative concepts come together in one workspace. No more chasing decks across five vendors. Every campaign starts from the same source of truth.", 1],
+    ["execute", "Execute Creative", "Creative produced and reviewed inside the system. AI-assisted where it helps, human-led where judgment matters. Versions, comments, and approvals never leave the brief.", 2],
+    ["plan-media", "Plan Media", "Channel mix, flighting, and budget modeled against the brand and performance goals on the same page. No more spreadsheets that disagree with the deck.", 3],
+    ["deploy-email", "Deploy Email", "Lifecycle and broadcast email built, tested, and pushed without leaving Carousel. Same brief, same brand voice, same measurement frame as paid and social.", 4],
+    ["manage-social", "Manage Social", "Organic and paid social planned together. Calendar, creative, captions, and posting in one place — with brand and performance signals reconciled in one report.", 5],
+    ["track", "Track Results", "One document the CFO actually reads. Brand health, channel performance, and customer truth pulled together — not a quarterly slide tour, a continuous read on what's working.", 6],
+  ];
+  for (const [slug, title, summary, order] of capabilities) {
+    await client.createIfNotExists({
+      _id: `cap-${slug}`, _type: "carouselCapability", title, summary, order,
+    });
+  }
+
   console.log("Seed complete.");
 }
 

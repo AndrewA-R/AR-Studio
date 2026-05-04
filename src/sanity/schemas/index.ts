@@ -6,5 +6,6 @@ import { faq } from "./faq";
 import { homepage } from "./homepage";
 import { siteSettings } from "./siteSettings";
 import { service } from "./service";
+import { carouselCapability } from "./carouselCapability";
 
-export const schemaTypes = [caseStudy, article, founder, clientLogo, faq, homepage, siteSettings, service];
+export const schemaTypes = [caseStudy, article, founder, clientLogo, faq, homepage, siteSettings, service, carouselCapability];

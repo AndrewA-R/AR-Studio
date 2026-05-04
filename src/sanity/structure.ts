@@ -12,6 +12,7 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem("caseStudy").title("Case studies"),
       S.documentTypeListItem("article").title("Essays"),
       S.documentTypeListItem("service").title("Services"),
+      S.documentTypeListItem("carouselCapability").title("Carousel capabilities"),
       S.divider(),
       S.documentTypeListItem("founder").title("Founders"),
       S.documentTypeListItem("clientLogo").title("Clients (logo wall)"),

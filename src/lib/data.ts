@@ -6,10 +6,11 @@ import {
   homepageQuery, siteSettingsQuery, featuredCasesQuery, allCasesQuery,
   caseBySlugQuery, articleArchiveQuery, articleBySlugQuery,
   foundersQuery, clientLogosQuery, servicesQuery, faqsQuery,
+  carouselCapabilitiesQuery,
 } from "@/sanity/queries";
 import {
   fallbackHomepage, fallbackSettings, fallbackFounders, fallbackClientLogos,
-  fallbackCases, fallbackArchive, fallbackForthcoming,
+  fallbackCases, fallbackArchive, fallbackForthcoming, fallbackCarouselCapabilities,
 } from "./site";
 
 const isConfigured = projectId !== "placeholder" && projectId !== "replace-me";
@@ -38,3 +39,4 @@ export const getFounders = () => safeFetch(foundersQuery, {}, fallbackFounders);
 export const getClientLogos = () => safeFetch(clientLogosQuery, {}, fallbackClientLogos);
 export const getServices = () => safeFetch(servicesQuery, {}, [] as unknown[]);
 export const getFaqs = () => safeFetch(faqsQuery, {}, [] as unknown[]);
+export const getCarouselCapabilities = () => safeFetch(carouselCapabilitiesQuery, {}, fallbackCarouselCapabilities);

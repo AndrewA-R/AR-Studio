@@ -111,6 +111,27 @@ export const fallbackArchive = [
     tag: "Strategy", readTime: "6 min", publishedAt: "2026-03-12" },
 ];
 
+export const fallbackCarouselCapabilities = [
+  { _id: "cap-build", title: "Build Campaigns", order: 1,
+    summary: "Strategy, briefs, calendars, and creative concepts come together in one workspace. No more chasing decks across five vendors. Every campaign starts from the same source of truth.",
+    videoUrl: null, poster: null },
+  { _id: "cap-execute", title: "Execute Creative", order: 2,
+    summary: "Creative produced and reviewed inside the system. AI-assisted where it helps, human-led where judgment matters. Versions, comments, and approvals never leave the brief.",
+    videoUrl: null, poster: null },
+  { _id: "cap-plan-media", title: "Plan Media", order: 3,
+    summary: "Channel mix, flighting, and budget modeled against the brand and performance goals on the same page. No more spreadsheets that disagree with the deck.",
+    videoUrl: null, poster: null },
+  { _id: "cap-deploy-email", title: "Deploy Email", order: 4,
+    summary: "Lifecycle and broadcast email built, tested, and pushed without leaving Carousel. Same brief, same brand voice, same measurement frame as paid and social.",
+    videoUrl: null, poster: null },
+  { _id: "cap-manage-social", title: "Manage Social", order: 5,
+    summary: "Organic and paid social planned together. Calendar, creative, captions, and posting in one place — with brand and performance signals reconciled in one report.",
+    videoUrl: null, poster: null },
+  { _id: "cap-track", title: "Track Results", order: 6,
+    summary: "One document the CFO actually reads. Brand health, channel performance, and customer truth pulled together — not a quarterly slide tour, a continuous read on what's working.",
+    videoUrl: null, poster: null },
+];
+
 export const fallbackForthcoming = {
   number: "04",
   title: "Naming the Five Fractures.",

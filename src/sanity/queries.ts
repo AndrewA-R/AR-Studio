@@ -35,3 +35,10 @@ export const clientLogosQuery = groq`*[_type == "clientLogo"] | order(order asc)
 export const servicesQuery = groq`*[_type == "service"] | order(order asc)`;
 
 export const faqsQuery = groq`*[_type == "faq"] | order(order asc)`;
+
+export const carouselCapabilitiesQuery = groq`*[_type == "carouselCapability"] | order(order asc){
+  _id, title, summary, order,
+  "videoUrl": video.asset->url,
+  "videoType": video.asset->mimeType,
+  poster
+}`;
