@@ -10,6 +10,10 @@
     --accent-strong: #2A1B5C;
   }
   html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  /* Site-wide zoom — equivalent to "browser zoom out to 80%". Scales every
+     asset, font, and rule proportionally so the page reads tighter without
+     any per-element edits. Does NOT apply inside the embedded Sanity Studio. */
+  body { zoom: 0.8; }
   body {
     background: #F6F3EC;
     color: #111010;

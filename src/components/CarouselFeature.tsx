@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CarouselGraphic } from "./CarouselGraphic";
 
 type Props = {
   thesis: string;
@@ -45,39 +46,49 @@ export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom }: P
             <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-bone/60">v3.4 · April 2026</span>
           </div>
 
-          <h2
-            className="m-0 max-w-[18ch] text-balance"
-            style={{
-              fontFamily: '"Instrument Serif", serif',
-              fontSize: "clamp(56px, 7.4vw, 128px)",
-              lineHeight: 0.92,
-              letterSpacing: "-0.028em",
-              fontWeight: 400,
-            }}
-          >
-            {thesis} <span className="italic text-purple-300">{thesisAccent}</span>
-          </h2>
+          {/* Two-column body: headline + copy + numbered list on the left,
+              animated Carousel graphic on the right. The headline is sized
+              to fit the left column without wrapping into the graphic. */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-y-12 gap-x-16 items-start">
+            <div>
+              <h2
+                className="m-0 text-balance"
+                style={{
+                  fontFamily: '"Instrument Serif", serif',
+                  fontSize: "clamp(32px, 3.6vw, 56px)",
+                  lineHeight: 1.0,
+                  letterSpacing: "-0.022em",
+                  fontWeight: 400,
+                }}
+              >
+                {thesis} <span className="italic text-purple-300">{thesisAccent}</span>
+              </h2>
 
-          <div className="mt-14 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-y-10 gap-x-16 items-start">
-            <div>
-              <p className="m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55 }}>{bodyTop}</p>
-              <p className="mt-6 m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55 }}>{bodyBottom}</p>
-            </div>
-            <div>
-              <div className="mb-4 pb-3 border-b border-bone/20 font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300">
-                What it does, in plain language
+              <div className="mt-12">
+                <p className="m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55 }}>{bodyTop}</p>
+                <p className="mt-6 m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55 }}>{bodyBottom}</p>
               </div>
-              <ol className="list-none p-0 m-0">
-                {items.map(([n, t, sub]) => (
-                  <li key={n} className="grid grid-cols-[36px_1fr] gap-3 py-3.5 border-b border-bone/10">
-                    <span className="font-mono text-[11px] tracking-[0.18em] text-purple-300">{n}</span>
-                    <span>
-                      <div className="text-bone" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 17, lineHeight: 1.4 }}>{t}</div>
-                      <div className="mt-1 text-bone/60 italic" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 15 }}>{sub}</div>
-                    </span>
-                  </li>
-                ))}
-              </ol>
+
+              <div className="mt-12">
+                <div className="mb-4 pb-3 border-b border-bone/20 font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300">
+                  What it does, in plain language
+                </div>
+                <ol className="list-none p-0 m-0">
+                  {items.map(([n, t, sub]) => (
+                    <li key={n} className="grid grid-cols-[36px_1fr] gap-3 py-3.5 border-b border-bone/10">
+                      <span className="font-mono text-[11px] tracking-[0.18em] text-purple-300">{n}</span>
+                      <span>
+                        <div className="text-bone" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 17, lineHeight: 1.4 }}>{t}</div>
+                        <div className="mt-1 text-bone/60 italic" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 15 }}>{sub}</div>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+
+            <div className="lg:sticky lg:top-12 self-start">
+              <CarouselGraphic />
             </div>
           </div>
 
