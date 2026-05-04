@@ -57,22 +57,31 @@ function CapabilityRow({ cap, index, isLast }: { cap: Capability; index: number;
     </div>
   );
 
+  // Browser-window chrome: rounded purple outline with three traffic-light dots
+  // in the top-left, then the video/poster inside an inset "screen" area.
   const media = (
-    <div className="aspect-video w-full bg-paper-dark border border-ink/10 overflow-hidden flex items-center justify-center"
-      style={posterUrl ? { backgroundImage: `url(${posterUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
-      {cap.videoUrl ? (
-        <video
-          className="w-full h-full object-cover"
-          autoPlay loop muted playsInline preload="metadata"
-          poster={posterUrl || undefined}
-        >
-          <source src={cap.videoUrl} type={cap.videoType || "video/mp4"} />
-        </video>
-      ) : posterUrl ? null : (
-        <span aria-hidden className="text-ink-400" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: "italic", fontSize: 18 }}>
-          ▷ Video placeholder
-        </span>
-      )}
+    <div className="w-full rounded-2xl border border-purple-700/70 p-3 sm:p-4 bg-paper">
+      <div className="flex items-center gap-1.5 pb-2.5 pl-1">
+        <span className="block w-2 h-2 rounded-full border border-purple-700/70" aria-hidden />
+        <span className="block w-2 h-2 rounded-full border border-purple-700/70" aria-hidden />
+        <span className="block w-2 h-2 rounded-full border border-purple-700/70" aria-hidden />
+      </div>
+      <div className="aspect-video w-full bg-paper-dark overflow-hidden flex items-center justify-center"
+        style={posterUrl ? { backgroundImage: `url(${posterUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
+        {cap.videoUrl ? (
+          <video
+            className="w-full h-full object-cover"
+            autoPlay loop muted playsInline preload="metadata"
+            poster={posterUrl || undefined}
+          >
+            <source src={cap.videoUrl} type={cap.videoType || "video/mp4"} />
+          </video>
+        ) : posterUrl ? null : (
+          <span aria-hidden className="text-ink-400" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: "italic", fontSize: 18 }}>
+            ▷ Video placeholder
+          </span>
+        )}
+      </div>
     </div>
   );
 
