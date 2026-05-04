@@ -9,13 +9,6 @@ type Props = {
   bodyBottom: string;
 };
 
-const items: Array<[string, string, string]> = [
-  ["01", "Plans, briefs, and produces creative in one workspace.", "No more handoffs across five vendors."],
-  ["02", "Buys, measures, and optimizes media against the same brief.", "Brand and performance signals in one view."],
-  ["03", "Pulls customer truth into every decision.", "Continuous insight — not a quarterly slide."],
-  ["04", "Reports in one document the CFO actually reads.", "No dashboard tour required."],
-];
-
 export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom }: Props) {
   return (
     <section className="bg-purple-950 text-bone">
@@ -67,23 +60,6 @@ export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom }: P
               <div className="mt-12">
                 <p className="m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55 }}>{bodyTop}</p>
                 <p className="mt-6 m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55 }}>{bodyBottom}</p>
-              </div>
-
-              <div className="mt-12">
-                <div className="mb-4 pb-3 border-b border-bone/20 font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300">
-                  What it does, in plain language
-                </div>
-                <ol className="list-none p-0 m-0">
-                  {items.map(([n, t, sub]) => (
-                    <li key={n} className="grid grid-cols-[36px_1fr] gap-3 py-3.5 border-b border-bone/10">
-                      <span className="font-mono text-[11px] tracking-[0.18em] text-purple-300">{n}</span>
-                      <span>
-                        <div className="text-bone" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 17, lineHeight: 1.4 }}>{t}</div>
-                        <div className="mt-1 text-bone/60 italic" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 15 }}>{sub}</div>
-                      </span>
-                    </li>
-                  ))}
-                </ol>
               </div>
             </div>
 
