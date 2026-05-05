@@ -23,9 +23,13 @@ function LogoCell({ l }: { l: Logo }) {
 export function Roster({
   headline, headlineAccent, copy, logos,
 }: { headline: string; headlineAccent: string; copy: string; logos: Logo[] }) {
-  // User-specified split — top row 7, bottom row 8
-  const top = logos.slice(0, 7);
-  const bottom = logos.slice(7, 15);
+  // Split into two rows. floor on top, ceil on bottom — gives 7+8 for 15
+  // brands (the original layout) and 8+8 for 16 brands.
+  const half = Math.floor(logos.length / 2);
+  const top = logos.slice(0, half);
+  const bottom = logos.slice(half);
+  const topCols = top.length;
+  const bottomCols = bottom.length;
 
   return (
     <section className="bg-purple-950 text-bone py-24 px-[clamp(24px,4vw,56px)]">
@@ -49,12 +53,20 @@ export function Roster({
           </div>
         </div>
 
-        {/* Two stacked grids — 7 across the top, 8 across the bottom.
-            On narrow viewports both collapse to 3/4 cols and wrap naturally. */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 border-t border-l border-bone/15">
+        {/* Two stacked grids — column count derives from how many brands are
+            in each half, so 15 logos → 7+8, 16 logos → 8+8, etc. The custom
+            column count only kicks in at lg+; below that we use 3/4 cols
+            so logos don't get squashed on phones. */}
+        <div
+          className="grid grid-cols-3 sm:grid-cols-4 lg:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))] border-t border-l border-bone/15"
+          style={{ ["--cols" as string]: String(topCols) }}
+        >
           {top.map((l) => <LogoCell key={l._id} l={l} />)}
         </div>
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-8 border-l border-bone/15">
+        <div
+          className="grid grid-cols-3 sm:grid-cols-4 lg:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))] border-l border-bone/15"
+          style={{ ["--cols" as string]: String(bottomCols) }}
+        >
           {bottom.map((l) => <LogoCell key={l._id} l={l} />)}
         </div>
       </div>
