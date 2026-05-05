@@ -14,6 +14,8 @@ export const article = defineType({
     defineField({ name: "publishedAt", title: "Published at", type: "datetime" }),
     defineField({ name: "status", title: "Status", type: "string",
       options: { list: ["draft", "forthcoming", "published"] }, initialValue: "draft" }),
+    defineField({ name: "author", title: "Author byline", type: "string",
+      description: "Shown under the title on the essay page. Defaults to 'Andrew Cagan' if left blank." }),
     defineField({ name: "excerpt", title: "Excerpt", type: "text", rows: 3 }),
     defineField({ name: "body", title: "Body", type: "array", of: [
       { type: "block" },
