@@ -34,9 +34,9 @@ export function Hero({ lede, ledeAccent, body }: { lede: string; ledeAccent: str
           </div>
         </div>
 
-        <div className="mt-8 pt-7 border-t border-ink/10 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-y-7 gap-x-14 items-start">
+        <div className="mt-8 pt-7 border-t border-ink/10 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-y-7 gap-x-14 items-start">
           <p
-            className="m-0 max-w-[20ch] text-ink italic"
+            className="m-0 max-w-[28ch] text-ink italic"
             style={{
               fontFamily: '"Instrument Serif", serif',
               fontSize: "clamp(30px, 3.4vw, 46px)",
@@ -45,8 +45,8 @@ export function Hero({ lede, ledeAccent, body }: { lede: string; ledeAccent: str
               whiteSpace: "pre-line",
             }}
           >
-            {lede}{" "}
-            <span className="not-italic text-purple-700" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: "normal" }}>
+            {lede}
+            <span className="not-italic text-purple-700 block" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: "normal" }}>
               {ledeAccent}
             </span>
           </p>

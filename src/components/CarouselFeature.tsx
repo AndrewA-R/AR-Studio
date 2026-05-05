@@ -8,15 +8,16 @@ type Props = {
   bodyTop: string;
   bodyBottom: string;
   closingQuote: string;
+  kickerRight: string;
 };
 
-export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom, closingQuote }: Props) {
+export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom, closingQuote, kickerRight }: Props) {
   return (
     <section className="bg-purple-950 text-bone">
       <div className="wrap pt-6">
-        <div className="flex justify-between items-baseline pb-3.5 border-b border-bone/20 font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300">
+        <div className="flex flex-wrap justify-between items-baseline gap-x-8 gap-y-2 pb-3.5 border-b border-bone/20 font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300">
           <span>§ What sets us apart</span>
-          <span>An AI-driven marketing operating system, built by A+R.</span>
+          <span className="text-right max-w-[40ch]" style={{ whiteSpace: "pre-line" }}>{kickerRight}</span>
         </div>
       </div>
 

@@ -13,6 +13,8 @@ export const homepage = defineType({
     defineField({ name: "carouselThesisAccent", title: "Carousel thesis — italic accent clause", type: "text", rows: 2 }),
     defineField({ name: "carouselBodyTop", title: "Carousel body — top paragraph", type: "text", rows: 5 }),
     defineField({ name: "carouselBodyBottom", title: "Carousel body — bottom paragraph", type: "text", rows: 4 }),
+    defineField({ name: "carouselKickerRight", title: "Carousel section — kicker bar (right side)", type: "text", rows: 2,
+      description: "Top-right of the Carousel section, opposite '§ What sets us apart'. Newlines preserved." }),
     defineField({ name: "carouselClosingQuote", title: "Carousel section — closing italic quote", type: "text", rows: 2,
       description: "Shown above the 'Tour Carousel' button. e.g. 'No other studio our size has built one. That is the point.'" }),
     defineField({ name: "thesisHeading", title: "Why A+R exists — heading", type: "text", rows: 4 }),

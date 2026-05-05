@@ -30,7 +30,7 @@ export const articleBySlugQuery = groq`*[_type == "article" && slug.current == $
 
 export const foundersQuery = groq`*[_type == "founder"] | order(order asc)`;
 
-export const clientLogosQuery = groq`*[_type == "clientLogo"] | order(order asc)`;
+export const clientLogosQuery = groq`*[_type == "clientLogo"] | order(order asc){_id, name, logo, order, opticalScale}`;
 
 export const servicesQuery = groq`*[_type == "service"] | order(order asc)`;
 

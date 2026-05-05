@@ -28,7 +28,7 @@ export function Thinking({ archive, forthcoming }: { archive: Article[]; forthco
                 fontWeight: 400,
               }}
             >
-              Essays from Andrew. <span className="italic text-purple-700">Published when we have something to say.</span>
+              Essays from A+R. <span className="italic text-purple-700">Published when we have something to say.</span>
             </h2>
           </div>
           <Link href="/thinking" className="font-ui text-sm text-ink border-b border-ink no-underline whitespace-nowrap">All essays →</Link>

@@ -22,7 +22,7 @@ export function Founders({
               fontWeight: 400,
             }}
           >
-            {headline}<span className="italic text-purple-700">{headlineAccent}</span>
+            {headline}<span className="italic text-purple-700 block">{headlineAccent}</span>
           </h2>
         </div>
         {/* Body copy aligned under the headline (matches the headline column of the grid above) */}
@@ -35,12 +35,12 @@ export function Founders({
           {founders.map((p, i) => (
             <div
               key={p._id}
-              className={`p-10 grid grid-cols-[160px_1fr] gap-7 items-start ${i > 0 ? "lg:border-l border-ink/10 border-t lg:border-t-0" : ""}`}
+              className={`p-10 grid grid-cols-[220px_1fr] gap-8 items-stretch ${i > 0 ? "lg:border-l border-ink/10 border-t lg:border-t-0" : ""}`}
             >
               <img
-                src={imgSrc(p.headshot, "/placeholders/headshot.jpg", 600)}
+                src={imgSrc(p.headshot, "/placeholders/headshot.jpg", 800)}
                 alt={p.name}
-                className="w-full aspect-[4/5] object-cover"
+                className="w-full h-full object-cover"
                 style={{ filter: "grayscale(100%)" }}
               />
               <div>
