@@ -12,6 +12,7 @@ export const fallbackHomepage = {
     "Carousel is the AI-driven operating system A+R built so a small team of senior marketers can ship the output of a department twice its size. Strategy, creative, media, and reporting — planned, briefed, produced, deployed, and measured in one place. Every specialist we bring onto your engagement plugs into the same system, speaks the same language, and works from the same brief.",
   carouselBodyBottom:
     "You don’t log into it. You don’t pay for a license. You hire A+R, and Carousel is how we deliver — faster, more accountable, and without the dozen disconnected SaaS tools every other agency is duct-taping together.",
+  carouselKickerRight: "An AI-Powered Marketing Operating System\nbuilt by A+R.",
   carouselClosingQuote: "No other studio our size has built one. That is the point.",
   thesisHeading:
     "The marketing landscape has fractured. Every discipline gets treated as its own operational entity. Everything is measured separately. The silos rarely speak.",
