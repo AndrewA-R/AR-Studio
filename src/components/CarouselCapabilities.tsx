@@ -71,7 +71,7 @@ function CapabilityRow({ cap, index, isLast }: { cap: Capability; index: number;
         {cap.videoUrl ? (
           <video
             className="w-full h-full object-cover"
-            autoPlay loop muted playsInline preload="metadata"
+            autoPlay loop muted playsInline preload="auto"
             poster={posterUrl || undefined}
           >
             <source src={cap.videoUrl} type={cap.videoType || "video/mp4"} />
