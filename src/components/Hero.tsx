@@ -42,6 +42,7 @@ export function Hero({ lede, ledeAccent, body }: { lede: string; ledeAccent: str
               fontSize: "clamp(30px, 3.4vw, 46px)",
               lineHeight: 1.08,
               letterSpacing: "-0.015em",
+              whiteSpace: "pre-line",
             }}
           >
             {lede}{" "}
@@ -50,7 +51,7 @@ export function Hero({ lede, ledeAccent, body }: { lede: string; ledeAccent: str
             </span>
           </p>
           <div>
-            <p className="m-0 max-w-[44ch] text-ink-600" style={{ fontSize: 17, lineHeight: 1.55 }}>{body}</p>
+            <p className="m-0 max-w-[44ch] text-ink-600" style={{ fontSize: 17, lineHeight: 1.55, whiteSpace: "pre-line" }}>{body}</p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link href="/#work" className="btn-primary">See the work ↓</Link>
               <Link href="/services" className="btn-link">How we work</Link>

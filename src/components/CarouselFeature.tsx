@@ -53,14 +53,15 @@ export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom, clo
                   lineHeight: 1.0,
                   letterSpacing: "-0.022em",
                   fontWeight: 400,
+                  whiteSpace: "pre-line",
                 }}
               >
                 {thesis} <span className="italic text-purple-300">{thesisAccent}</span>
               </h2>
 
               <div className="mt-12">
-                <p className="m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55 }}>{bodyTop}</p>
-                <p className="mt-6 m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55 }}>{bodyBottom}</p>
+                <p className="m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55, whiteSpace: "pre-line" }}>{bodyTop}</p>
+                <p className="mt-6 m-0 max-w-[52ch] text-bone/90" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 21, lineHeight: 1.55, whiteSpace: "pre-line" }}>{bodyBottom}</p>
               </div>
             </div>
 
@@ -70,7 +71,7 @@ export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom, clo
           </div>
 
           <div className="mt-14 pt-7 border-t border-bone/20 flex flex-wrap justify-between items-center gap-8">
-            <div className="text-bone/85 italic max-w-[38ch]" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: 1.25 }}>
+            <div className="text-bone/85 italic max-w-[38ch]" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: 1.25, whiteSpace: "pre-line" }}>
               {closingQuote}
             </div>
             <Link href="/carousel" className="font-ui text-sm font-medium px-[22px] py-3.5 bg-bone text-purple-950 no-underline whitespace-nowrap">Tour Carousel →</Link>

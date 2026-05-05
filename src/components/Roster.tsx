@@ -49,7 +49,7 @@ export function Roster({
             >
               {headline}<span className="italic text-purple-300">{headlineAccent}</span>
             </h2>
-            <p className="mt-5 max-w-[60ch] m-0 text-bone/70" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 17 }}>{copy}</p>
+            <p className="mt-5 max-w-[60ch] m-0 text-bone/70" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 17, whiteSpace: "pre-line" }}>{copy}</p>
           </div>
         </div>
 

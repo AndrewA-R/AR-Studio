@@ -28,7 +28,7 @@ export function Founders({
         {/* Body copy aligned under the headline (matches the headline column of the grid above) */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-x-20 mb-14">
           <div aria-hidden className="hidden lg:block" />
-          <p className="m-0 max-w-[70ch] text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6 }}>{copy}</p>
+          <p className="m-0 max-w-[70ch] text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6, whiteSpace: "pre-line" }}>{copy}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 border-t-2 border-ink">
@@ -46,7 +46,7 @@ export function Founders({
               <div>
                 <h3 className="m-0 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 28, lineHeight: 1.02, fontWeight: 400 }}>{p.name}</h3>
                 <div className="mt-1.5 font-mono text-[11px] tracking-[0.14em] uppercase text-purple-700">{p.role}</div>
-                <p className="mt-4 max-w-[38ch] text-ink-600 italic m-0" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 19, lineHeight: 1.4 }}>{p.bio}</p>
+                <p className="mt-4 max-w-[38ch] text-ink-600 italic m-0" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 19, lineHeight: 1.4, whiteSpace: "pre-line" }}>{p.bio}</p>
               </div>
             </div>
           ))}

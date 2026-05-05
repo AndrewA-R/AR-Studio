@@ -15,14 +15,15 @@ export function Thesis({
             lineHeight: 1.0,
             letterSpacing: "-0.025em",
             fontWeight: 400,
+            whiteSpace: "pre-line",
           }}
         >
           {heading} <span className="italic text-purple-300">{headingAccent}</span>
         </h2>
         <div className="mt-[72px] grid grid-cols-1 lg:grid-cols-2 gap-y-12 gap-x-20 items-start">
           <div>
-            <p className="m-0 max-w-[46ch] text-bone/80" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6 }}>{bodyTop}</p>
-            <p className="mt-5 m-0 max-w-[46ch] text-bone/80" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6 }}>{bodyBottom}</p>
+            <p className="m-0 max-w-[46ch] text-bone/80" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6, whiteSpace: "pre-line" }}>{bodyTop}</p>
+            <p className="mt-5 m-0 max-w-[46ch] text-bone/80" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6, whiteSpace: "pre-line" }}>{bodyBottom}</p>
           </div>
           <div className="border-t border-bone/20">
             {fractures.map((f, i) => (
