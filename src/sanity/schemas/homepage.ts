@@ -13,8 +13,12 @@ export const homepage = defineType({
     defineField({ name: "carouselThesisAccent", title: "Carousel thesis — italic accent clause", type: "text", rows: 2 }),
     defineField({ name: "carouselBodyTop", title: "Carousel body — top paragraph", type: "text", rows: 5 }),
     defineField({ name: "carouselBodyBottom", title: "Carousel body — bottom paragraph", type: "text", rows: 4 }),
+    defineField({ name: "carouselClosingQuote", title: "Carousel section — closing italic quote", type: "text", rows: 2,
+      description: "Shown above the 'Tour Carousel' button. e.g. 'No other studio our size has built one. That is the point.'" }),
     defineField({ name: "thesisHeading", title: "Why A+R exists — heading", type: "text", rows: 4 }),
     defineField({ name: "thesisHeadingAccent", title: "Why A+R exists — italic accent clause", type: "string" }),
+    defineField({ name: "thesisBodyTop", title: "Why A+R exists — first paragraph (left column)", type: "text", rows: 5 }),
+    defineField({ name: "thesisBodyBottom", title: "Why A+R exists — second paragraph (left column)", type: "text", rows: 5 }),
     defineField({ name: "fractures", title: "The fractures (numbered list on dark)", type: "array",
       of: [{ type: "object", fields: [
         { name: "label", type: "string", title: "Bold label" },

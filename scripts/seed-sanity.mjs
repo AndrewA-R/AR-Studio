@@ -10,8 +10,11 @@ const homepageContent = {
   carouselThesisAccent: "And the reason we can run circles around shops twice our size.",
   carouselBodyTop: "Carousel is the AI-driven operating system A+R built so a small team of senior marketers can ship the output of a department twice its size. Strategy, creative, media, and reporting — planned, briefed, produced, deployed, and measured in one place. Every specialist we bring onto your engagement plugs into the same system, speaks the same language, and works from the same brief.",
   carouselBodyBottom: "You don't log into it. You don't pay for a license. You hire A+R, and Carousel is how we deliver — faster, more accountable, and without the dozen disconnected SaaS tools every other agency is duct-taping together.",
+  carouselClosingQuote: "No other studio our size has built one. That is the point.",
   thesisHeading: "The marketing landscape has fractured. Every discipline gets treated as its own operational entity. Everything is measured separately. The silos rarely speak.",
   thesisHeadingAccent: "A+R is putting it back together.",
+  thesisBodyTop: "That's the entire thesis of the business. Not a service we offer, not a vertical, not a deck slide — the perspective we bring to every engagement. The commission can be narrow. The thinking never is.",
+  thesisBodyBottom: "Closing those gaps requires three things at once: a way of working that doesn't segment talent by lane, an operating system that lets the work compound across disciplines, and a business model that doesn't profit from the fractures staying open. We built the studio around all three.",
   fractures: [
     { _key: "f1", label: "Brand and performance", rest: "measured separately, briefed separately, rarely speak." },
     { _key: "f2", label: "Strategy and execution", rest: "live in different rooms with different vocabularies." },

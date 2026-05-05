@@ -7,9 +7,10 @@ type Props = {
   thesisAccent: string;
   bodyTop: string;
   bodyBottom: string;
+  closingQuote: string;
 };
 
-export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom }: Props) {
+export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom, closingQuote }: Props) {
   return (
     <section className="bg-purple-950 text-bone">
       <div className="wrap pt-6">
@@ -70,7 +71,7 @@ export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom }: P
 
           <div className="mt-14 pt-7 border-t border-bone/20 flex flex-wrap justify-between items-center gap-8">
             <div className="text-bone/85 italic max-w-[38ch]" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: 1.25 }}>
-              No other studio our size has built one. That is the point.
+              {closingQuote}
             </div>
             <Link href="/carousel" className="font-ui text-sm font-medium px-[22px] py-3.5 bg-bone text-purple-950 no-underline whitespace-nowrap">Tour Carousel →</Link>
           </div>

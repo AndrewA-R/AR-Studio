@@ -61,10 +61,10 @@ function CapabilityRow({ cap, index, isLast }: { cap: Capability; index: number;
   // in the top-left, then the video/poster inside an inset "screen" area.
   const media = (
     <div className="w-full rounded-2xl border border-purple-700/70 p-3 sm:p-4 bg-paper">
-      <div className="flex items-center gap-1.5 pb-2.5 pl-1">
-        <span className="block w-2 h-2 rounded-full border border-purple-700/70" aria-hidden />
-        <span className="block w-2 h-2 rounded-full border border-purple-700/70" aria-hidden />
-        <span className="block w-2 h-2 rounded-full border border-purple-700/70" aria-hidden />
+      <div className="flex items-center gap-2 pb-2.5 pl-1">
+        <span className="block w-2.5 h-2.5 rounded-full bg-purple-700/70 shrink-0" aria-hidden />
+        <span className="block w-2.5 h-2.5 rounded-full bg-purple-700/70 shrink-0" aria-hidden />
+        <span className="block w-2.5 h-2.5 rounded-full bg-purple-700/70 shrink-0" aria-hidden />
       </div>
       <div className="aspect-video w-full bg-paper-dark overflow-hidden flex items-center justify-center"
         style={posterUrl ? { backgroundImage: `url(${posterUrl})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>

@@ -37,8 +37,15 @@ export default async function HomePage() {
         thesisAccent={homepage.carouselThesisAccent}
         bodyTop={homepage.carouselBodyTop}
         bodyBottom={homepage.carouselBodyBottom}
+        closingQuote={homepage.carouselClosingQuote}
       />
-      <Thesis heading={homepage.thesisHeading} headingAccent={homepage.thesisHeadingAccent} fractures={homepage.fractures} />
+      <Thesis
+        heading={homepage.thesisHeading}
+        headingAccent={homepage.thesisHeadingAccent}
+        fractures={homepage.fractures}
+        bodyTop={homepage.thesisBodyTop}
+        bodyBottom={homepage.thesisBodyBottom}
+      />
       <Roster
         headline={homepage.rosterHeadline}
         headlineAccent={homepage.rosterHeadlineAccent}
