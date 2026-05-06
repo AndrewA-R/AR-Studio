@@ -103,7 +103,12 @@ export interface CaseBrandSystemProps {
   body?: ReactNode;
   palette?: Swatch[];
   typography?: TypographyDef;
+  /** Legacy: array of label strings only — replaced by `templates`. */
   layoutSlots?: string[];
+  /** New: array of {label, image, caption} for the layout-template thumbnails. */
+  templates?: Array<{ label?: string; image?: unknown; src?: string; caption?: string }>;
+  /** GROQ-expanded URL for the logo/wordmark slot at the top-left of the grid. */
+  logoSrc?: string;
 }
 
 export interface CaseCTAProps {

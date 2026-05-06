@@ -51,6 +51,8 @@ export const caseBySlugQuery = groq`*[_type == "caseStudy" && slug.current == $s
     },
     _type == "brandSystemBlock" => {
       ...,
+      "logoSrc": logoSample.asset->url,
+      templates[]{ ..., "src": image.asset->url }
     }
   }
 }`;

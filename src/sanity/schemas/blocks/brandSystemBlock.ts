@@ -49,9 +49,36 @@ export default defineType({
     }),
 
     defineField({
-      name: 'layoutSlots', title: 'Layout templates', type: 'array',
+      name: 'logoSample', title: 'Logo / wordmark sample', type: 'image',
+      options: {hotspot: true},
+      description: 'Top-left thumbnail in the system grid. Falls back to a placeholder if blank.',
+    }),
+
+    defineField({
+      name: 'templates', title: 'Layout templates', type: 'array',
+      description: 'Three layout thumbnails. Each shows the image you upload, or a labelled placeholder if no image is set.',
+      validation: (r) => r.max(6),
+      of: [{
+        type: 'object',
+        name: 'template',
+        fields: [
+          {name: 'label', title: 'Label', type: 'string', description: 'Shown on the placeholder when no image is uploaded. e.g. "T1".'},
+          {name: 'image', title: 'Image', type: 'image', options: {hotspot: true}},
+          {name: 'caption', title: 'Caption', type: 'string'},
+        ],
+        // @ts-expect-error Sanity preview accepts media:'image' here
+        preview: {select: {title: 'label', subtitle: 'caption', media: 'image'}},
+      }],
+    }),
+
+    // Legacy — kept readable so existing data isn't lost. Hidden once
+    // templates is populated.
+    defineField({
+      name: 'layoutSlots', title: 'Layout slot labels (legacy)', type: 'array',
       of: [{type: 'string'}],
-      description: 'Short labels for layout thumbnails, e.g. "T1", "T2", "T3".',
+      description: 'Old shape — labels only, no images. New work should use the Layout templates field above.',
+      // @ts-expect-error - parent typing is loose in Sanity 4
+      hidden: ({parent}) => Array.isArray(parent?.templates) && parent.templates.length > 0,
     }),
   ],
   preview: {
