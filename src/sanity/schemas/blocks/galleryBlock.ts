@@ -11,7 +11,11 @@
 import {defineField, defineType} from 'sanity';
 
 const galleryItemFields = [
-  {name: 'image',   title: 'Image',   type: 'image', options: {hotspot: true}},
+  {name: 'image',   title: 'Image',   type: 'image', options: {hotspot: true},
+    description: 'Use either Image or Video. If both are set, Video wins.'},
+  {name: 'video',   title: 'Video',   type: 'file',
+    options: {accept: 'video/mp4,video/webm,video/quicktime'},
+    description: 'Looping clip. MP4 / WebM / MOV. Plays muted, autoplay, loop, playsInline.'},
   {name: 'span',    title: 'Column span', type: 'number',
     description: '1–12. Typical: 4 (third), 6 (half), 8 (two-thirds), 12 (full).',
     validation: (r: any) => r.min(1).max(12), initialValue: 4},
@@ -19,7 +23,7 @@ const galleryItemFields = [
     options: {list: ['16/9', '4/5', '1/1', '3/4', '21/9']}, initialValue: '4/5'},
   {name: 'caption', title: 'Caption', type: 'string'},
   {name: 'label',   title: 'Placeholder label', type: 'string',
-    description: 'Shown when no image is uploaded yet, e.g. "A1", "01".'},
+    description: 'Shown when no image / video is uploaded yet, e.g. "A1", "01".'},
 ];
 
 export default defineType({
