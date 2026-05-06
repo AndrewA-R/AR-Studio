@@ -47,12 +47,14 @@ export default async function CaseStudyPage({ params }: Props) {
           wordmark={stub.client}
           headline={stub.headline}
           lede="Full case study coming soon — content for this engagement is being authored in Sanity."
-          atGlance={[
-            { k: "Tier", v: stub.tier },
-            { k: "Sector", v: stub.sector },
-            { k: "Dates", v: stub.dates },
-            { k: "Status", v: "Draft" },
-          ]}
+          atGlance={(
+            [
+              ["Tier", stub.tier],
+              ["Sector", stub.sector],
+              ["Dates", stub.dates],
+              ["Status", "Draft"],
+            ] as Array<[string, string | undefined]>
+          ).filter(([, v]) => Boolean(v)).map(([k, v]) => ({ k, v: v as string }))}
         />
         <CaseCTA />
       </PageShell>
