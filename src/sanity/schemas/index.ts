@@ -8,4 +8,15 @@ import { siteSettings } from "./siteSettings";
 import { service } from "./service";
 import { carouselCapability } from "./carouselCapability";
 
-export const schemaTypes = [caseStudy, article, founder, clientLogo, faq, homepage, siteSettings, service, carouselCapability];
+// Body block schemas referenced from caseStudy.body[]
+import metricsBlock     from "./blocks/metricsBlock";
+import strategyBlock    from "./blocks/strategyBlock";
+import diagnosisBlock   from "./blocks/diagnosisBlock";
+import galleryBlock     from "./blocks/galleryBlock";
+import quoteBlock       from "./blocks/quoteBlock";
+import brandSystemBlock from "./blocks/brandSystemBlock";
+
+export const schemaTypes = [
+  caseStudy, article, founder, clientLogo, faq, homepage, siteSettings, service, carouselCapability,
+  metricsBlock, strategyBlock, diagnosisBlock, galleryBlock, quoteBlock, brandSystemBlock,
+];

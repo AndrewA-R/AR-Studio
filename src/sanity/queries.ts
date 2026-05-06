@@ -7,17 +7,52 @@ export const homepageQuery = groq`*[_type == "homepage"][0]{
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]`;
 
+// Tile-shape fields for the homepage Work section. We pull the new
+// schema's masthead fields and alias them to the tile component's
+// expected props (caseNumber/client/headline/result), with sensible
+// fallbacks so a half-filled doc still renders.
 export const featuredCasesQuery = groq`*[_type == "caseStudy" && featured == true] | order(order asc){
-  _id, title, "slug": slug.current, caseNumber, client, tier, sector, dates,
-  headline, result, heroImage, clientLogo, logoIsWhite
+  _id,
+  "slug": slug.current,
+  "caseNumber": caseNo,
+  "client": wordmark,
+  tier, sector, dates,
+  "headline": coalesce(tileHeadline, headline + select(defined(italic) => " " + italic, "")),
+  "result": tileResult,
+  "heroImage": heroImage,
+  "clientLogo": logo,
+  "logoIsWhite": false
 }`;
 
 export const allCasesQuery = groq`*[_type == "caseStudy"] | order(order asc){
-  _id, title, "slug": slug.current, caseNumber, client, tier, sector, dates, headline, result, heroImage
+  _id,
+  "slug": slug.current,
+  "caseNumber": caseNo,
+  "client": wordmark,
+  tier, sector, dates,
+  "headline": coalesce(tileHeadline, headline),
+  "result": tileResult,
+  heroImage
 }`;
 
+// Full case-study fetch — expands all image refs in body blocks so the
+// frontend can render <img src> directly without secondary requests.
 export const caseBySlugQuery = groq`*[_type == "caseStudy" && slug.current == $slug][0]{
-  ..., "slug": slug.current
+  ...,
+  "slug": slug.current,
+  "logoUrl": logo.asset->url,
+  "heroImageUrl": heroImage.asset->url,
+  body[]{
+    ...,
+    _type == "galleryBlock" => {
+      ...,
+      items[]{ ..., "src": image.asset->url },
+      chapters[]{ ..., items[]{ ..., "src": image.asset->url } }
+    },
+    _type == "brandSystemBlock" => {
+      ...,
+    }
+  }
 }`;
 
 export const articleArchiveQuery = groq`*[_type == "article" && status == "published"] | order(publishedAt desc){
