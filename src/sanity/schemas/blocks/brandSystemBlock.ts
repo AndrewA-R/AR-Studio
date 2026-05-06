@@ -66,7 +66,6 @@ export default defineType({
           {name: 'image', title: 'Image', type: 'image', options: {hotspot: true}},
           {name: 'caption', title: 'Caption', type: 'string'},
         ],
-        // @ts-expect-error Sanity preview accepts media:'image' here
         preview: {select: {title: 'label', subtitle: 'caption', media: 'image'}},
       }],
     }),
@@ -77,8 +76,8 @@ export default defineType({
       name: 'layoutSlots', title: 'Layout slot labels (legacy)', type: 'array',
       of: [{type: 'string'}],
       description: 'Old shape — labels only, no images. New work should use the Layout templates field above.',
-      // @ts-expect-error - parent typing is loose in Sanity 4
-      hidden: ({parent}) => Array.isArray(parent?.templates) && parent.templates.length > 0,
+      hidden: (ctx: { parent?: { templates?: unknown[] } }) =>
+        Array.isArray(ctx.parent?.templates) && (ctx.parent?.templates?.length ?? 0) > 0,
     }),
   ],
   preview: {
