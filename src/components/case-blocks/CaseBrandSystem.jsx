@@ -47,14 +47,23 @@ export default function CaseBrandSystem({n = '06', kicker = 'The system', title,
               </div>
             </div>
           )}
-          {/* Layout templates — uploaded image or a labelled placeholder */}
+          {/* Layout templates — uploaded video, image, or a labelled placeholder */}
           {tmpls.map((t, i) => {
-            const src = t.src || t.image?.asset?.url || (typeof t.image === 'string' ? t.image : null);
+            const imgSrc = t.src || t.image?.asset?.url || (typeof t.image === 'string' ? t.image : null);
+            const videoSrc = t.videoSrc || t.video?.asset?.url || null;
+            const videoType = t.videoType || t.video?.asset?.mimeType || 'video/mp4';
             const label = t.label || `T${i + 1}`;
             return (
               <div key={i} style={{gridColumn: 'span 4', aspectRatio: '4/5', border: '1px solid rgba(17,16,16,0.14)', position: 'relative', overflow: 'hidden', background: AR_WHITE}}>
-                {src
-                  ? <img src={src} alt={t.caption || label} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}} />
+                {videoSrc
+                  ? <video
+                      autoPlay loop muted playsInline preload="auto"
+                      poster={imgSrc || undefined}
+                      style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}>
+                      <source src={videoSrc} type={videoType} />
+                    </video>
+                  : imgSrc
+                  ? <img src={imgSrc} alt={t.caption || label} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}} />
                   : <Placeholder label={label} caption={t.caption || 'Layout template'} />}
               </div>
             );

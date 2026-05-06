@@ -3,7 +3,7 @@ import { PageShell } from "@/components/PageShell";
 import { getCaseBySlug } from "@/lib/data";
 import {
   CaseMasthead, CaseMetrics, CaseStrategy, CaseDiagnosis,
-  CaseGallery, CaseQuote, CaseBrandSystem, CaseCTA,
+  CaseGallery, CaseQuote, CaseBrandSystem, CaseVideo, CaseCTA,
 } from "@/components/case-blocks";
 import { fallbackCases } from "@/lib/site";
 
@@ -16,6 +16,7 @@ type CaseDoc = {
   wordmark?: string; logo?: unknown; logoUrl?: string;
   headline?: string; italic?: string; lede?: string;
   heroImage?: unknown; heroImageUrl?: string;
+  heroVideoUrl?: string; heroVideoType?: string;
   atGlance?: Array<{ k?: string; v?: string }>;
   body?: AnyBlock[];
 };
@@ -75,6 +76,8 @@ export default async function CaseStudyPage({ params }: Props) {
         lede={fromSanity.lede}
         atGlance={fromSanity.atGlance}
         image={fromSanity.heroImageUrl}
+        videoSrc={fromSanity.heroVideoUrl}
+        videoType={fromSanity.heroVideoType}
       />
 
       {(fromSanity.body || []).map((block, idx) => {
@@ -96,6 +99,8 @@ export default async function CaseStudyPage({ params }: Props) {
             return <CaseQuote key={key} {...(block as object)} />;
           case "brandSystemBlock":
             return <CaseBrandSystem key={key} n={n} {...(block as object)} />;
+          case "videoBlock":
+            return <CaseVideo key={key} n={n} {...(block as object)} />;
           default:
             if (process.env.NODE_ENV !== "production") {
               console.warn("Unknown case-study block type:", block._type);

@@ -11,6 +11,9 @@ type GalleryItem = {
   label?: string;
   src?: string;
   image?: unknown;
+  videoSrc?: string;
+  videoType?: string;
+  video?: unknown;
 };
 
 type GalleryChapter = {
@@ -51,6 +54,8 @@ export interface CaseMastheadProps {
   lede?: ReactNode;
   atGlance?: GlanceRow[];
   image?: string;
+  videoSrc?: string;
+  videoType?: string;
 }
 
 export interface CaseMetricsProps {
@@ -105,10 +110,31 @@ export interface CaseBrandSystemProps {
   typography?: TypographyDef;
   /** Legacy: array of label strings only — replaced by `templates`. */
   layoutSlots?: string[];
-  /** New: array of {label, image, caption} for the layout-template thumbnails. */
-  templates?: Array<{ label?: string; image?: unknown; src?: string; caption?: string }>;
+  /** New: each template can hold an image OR video. If both, video wins. */
+  templates?: Array<{
+    label?: string;
+    image?: unknown;
+    src?: string;
+    video?: unknown;
+    videoSrc?: string;
+    videoType?: string;
+    caption?: string;
+  }>;
   /** GROQ-expanded URL for the logo/wordmark slot at the top-left of the grid. */
   logoSrc?: string;
+}
+
+export interface CaseVideoProps {
+  n?: string;
+  kicker?: string;
+  title?: string;
+  lede?: ReactNode;
+  videoSrc?: string;
+  videoType?: string;
+  posterSrc?: string;
+  ratio?: string;
+  fullBleed?: boolean;
+  caption?: string;
 }
 
 export interface CaseCTAProps {
@@ -132,6 +158,7 @@ export const CaseDiagnosis:     (props: CaseDiagnosisProps) => JSX.Element;
 export const CaseGallery:       (props: CaseGalleryProps) => JSX.Element;
 export const CaseQuote:         (props: CaseQuoteProps) => JSX.Element;
 export const CaseBrandSystem:   (props: CaseBrandSystemProps) => JSX.Element;
+export const CaseVideo:         (props: CaseVideoProps) => JSX.Element | null;
 export const CaseCTA:           (props: CaseCTAProps) => JSX.Element;
 export const Placeholder:       (props: PlaceholderProps) => JSX.Element;
 
