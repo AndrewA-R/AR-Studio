@@ -45,7 +45,10 @@ function GalleryGrid({items = [], dark}) {
     <div style={{display: 'grid', gridTemplateColumns: `repeat(${TOTAL_COLS}, 1fr)`, gridAutoRows: `${ROW_UNIT}px`, gap: COL_GUTTER}}>
       {items.map((it, i) => {
         const span = it.span || 4;
-        const src = it.src || it.image?.asset?.url || it.image;
+        const imgSrc = it.src || it.image?.asset?.url || (typeof it.image === 'string' ? it.image : null);
+        const videoSrc = it.videoSrc || it.video?.asset?.url || null;
+        const videoType = it.videoType || it.video?.asset?.mimeType || 'video/mp4';
+        const hasMedia = videoSrc || imgSrc;
         return (
           <figure key={i} style={{
             gridColumn: `span ${span}`,
@@ -54,10 +57,17 @@ function GalleryGrid({items = [], dark}) {
             background: dark ? AR_PURPLE_INK : AR_WHITE,
             border: `1px solid ${dark ? 'rgba(253,252,248,0.14)' : 'rgba(17,16,16,0.10)'}`,
           }}>
-            {src
-              ? <img src={src} alt={it.caption || ''} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}} />
+            {videoSrc
+              ? <video
+                  autoPlay loop muted playsInline preload="auto"
+                  poster={imgSrc || undefined}
+                  style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}>
+                  <source src={videoSrc} type={videoType} />
+                </video>
+              : imgSrc
+              ? <img src={imgSrc} alt={it.caption || ''} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}} />
               : <Placeholder label={it.label || String(i + 1).padStart(2, '0')} caption={it.caption} dark={dark} />}
-            {it.caption && src && (
+            {it.caption && hasMedia && (
               <figcaption style={{
                 position: 'absolute', bottom: 0, left: 0, right: 0,
                 padding: '10px 14px', fontFamily: 'JetBrains Mono, monospace',

@@ -14,6 +14,7 @@ export default function CaseMasthead({
   wordmark, logo,
   headline, italic, lede,
   atGlance = [], image,
+  videoSrc, videoType,
 }) {
   // Normalize atGlance — accept [[k,v], …] or [{k,v}, …]
   const rows = atGlance.map((r) => Array.isArray(r) ? r : [r.k, r.v]);
@@ -44,7 +45,14 @@ export default function CaseMasthead({
 
         <div style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24, marginTop: 32}}>
           <div style={{position: 'relative', aspectRatio: '5 / 3', background: AR_WHITE, overflow: 'hidden'}}>
-            {image
+            {videoSrc
+              ? <video
+                  autoPlay loop muted playsInline preload="auto"
+                  poster={image}
+                  style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block'}}>
+                  <source src={videoSrc} type={videoType || 'video/mp4'} />
+                </video>
+              : image
               ? <img src={image} alt={wordmark} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block'}} />
               : <Placeholder label="01" caption="Hero image" />}
           </div>

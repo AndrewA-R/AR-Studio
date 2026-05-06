@@ -15,8 +15,9 @@ import diagnosisBlock   from "./blocks/diagnosisBlock";
 import galleryBlock     from "./blocks/galleryBlock";
 import quoteBlock       from "./blocks/quoteBlock";
 import brandSystemBlock from "./blocks/brandSystemBlock";
+import videoBlock       from "./blocks/videoBlock";
 
 export const schemaTypes = [
   caseStudy, article, founder, clientLogo, faq, homepage, siteSettings, service, carouselCapability,
-  metricsBlock, strategyBlock, diagnosisBlock, galleryBlock, quoteBlock, brandSystemBlock,
+  metricsBlock, strategyBlock, diagnosisBlock, galleryBlock, quoteBlock, brandSystemBlock, videoBlock,
 ];

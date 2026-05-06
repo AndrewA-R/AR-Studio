@@ -62,8 +62,11 @@ export default defineType({
         type: 'object',
         name: 'template',
         fields: [
-          {name: 'label', title: 'Label', type: 'string', description: 'Shown on the placeholder when no image is uploaded. e.g. "T1".'},
+          {name: 'label', title: 'Label', type: 'string', description: 'Shown on the placeholder when no image / video is uploaded. e.g. "T1".'},
           {name: 'image', title: 'Image', type: 'image', options: {hotspot: true}},
+          {name: 'video', title: 'Video', type: 'file',
+            options: {accept: 'video/mp4,video/webm,video/quicktime'},
+            description: 'Looping clip. If both image and video are set, video wins.'},
           {name: 'caption', title: 'Caption', type: 'string'},
         ],
         preview: {select: {title: 'label', subtitle: 'caption', media: 'image'}},

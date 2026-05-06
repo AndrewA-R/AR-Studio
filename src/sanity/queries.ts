@@ -42,17 +42,43 @@ export const caseBySlugQuery = groq`*[_type == "caseStudy" && slug.current == $s
   "slug": slug.current,
   "logoUrl": logo.asset->url,
   "heroImageUrl": heroImage.asset->url,
+  "heroVideoUrl": heroVideo.asset->url,
+  "heroVideoType": heroVideo.asset->mimeType,
   body[]{
     ...,
     _type == "galleryBlock" => {
       ...,
-      items[]{ ..., "src": image.asset->url },
-      chapters[]{ ..., items[]{ ..., "src": image.asset->url } }
+      items[]{
+        ...,
+        "src": image.asset->url,
+        "videoSrc": video.asset->url,
+        "videoType": video.asset->mimeType
+      },
+      chapters[]{
+        ...,
+        items[]{
+          ...,
+          "src": image.asset->url,
+          "videoSrc": video.asset->url,
+          "videoType": video.asset->mimeType
+        }
+      }
     },
     _type == "brandSystemBlock" => {
       ...,
       "logoSrc": logoSample.asset->url,
-      templates[]{ ..., "src": image.asset->url }
+      templates[]{
+        ...,
+        "src": image.asset->url,
+        "videoSrc": video.asset->url,
+        "videoType": video.asset->mimeType
+      }
+    },
+    _type == "videoBlock" => {
+      ...,
+      "videoSrc": video.asset->url,
+      "videoType": video.asset->mimeType,
+      "posterSrc": poster.asset->url
     }
   }
 }`;

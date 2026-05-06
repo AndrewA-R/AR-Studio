@@ -41,7 +41,11 @@ export const caseStudy = defineType({
     defineField({ name: "lede", title: "Lede", type: "text", rows: 4, group: "masthead" }),
 
     defineField({ name: "heroImage", title: "Hero image", type: "image", group: "masthead",
-      options: { hotspot: true } }),
+      options: { hotspot: true },
+      description: "Use Hero image OR Hero video. If both are set, the video wins." }),
+    defineField({ name: "heroVideo", title: "Hero video", type: "file", group: "masthead",
+      options: { accept: "video/mp4,video/webm,video/quicktime" },
+      description: "Looping clip for the masthead. MP4 / WebM / MOV. Plays muted, autoplay, loop, playsInline." }),
 
     defineField({ name: "atGlance", title: "At a glance", type: "array", group: "masthead",
       description: "Key/value rows shown in the purple plate. Keep to 4 rows.",
@@ -64,6 +68,7 @@ export const caseStudy = defineType({
         { type: "strategyBlock" },
         { type: "brandSystemBlock" },
         { type: "galleryBlock" },
+        { type: "videoBlock" },
         { type: "quoteBlock" },
         { type: "diagnosisBlock" },
       ] }),
