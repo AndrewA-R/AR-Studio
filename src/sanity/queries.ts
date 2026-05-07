@@ -87,7 +87,7 @@ export const caseBySlugQuery = groq`*[_type == "caseStudy" && slug.current == $s
   }
 }`;
 
-export const articleArchiveQuery = groq`*[_type == "article" && status == "published"] | order(publishedAt desc){
+export const articleArchiveQuery = groq`*[_type == "article" && status != "forthcoming"] | order(publishedAt desc){
   _id, title, "slug": slug.current, number, tag, readTime, publishedAt, excerpt
 }`;
 

@@ -10,7 +10,7 @@ import {
 } from "@/sanity/queries";
 import {
   fallbackHomepage, fallbackSettings, fallbackFounders, fallbackClientLogos,
-  fallbackCases, fallbackArchive, fallbackForthcoming, fallbackCarouselCapabilities,
+  fallbackCases, fallbackArchive, fallbackCarouselCapabilities,
 } from "./site";
 
 const isConfigured = projectId !== "placeholder" && projectId !== "replace-me";
@@ -28,7 +28,7 @@ async function safeFetch<T>(query: string, params: Record<string, unknown> = {},
   }
 }
 
-export const getHomepage = () => safeFetch(homepageQuery, {}, { ...fallbackHomepage, forthcomingArticle: fallbackForthcoming });
+export const getHomepage = () => safeFetch(homepageQuery, {}, { ...fallbackHomepage, forthcomingArticle: null });
 export const getSettings = () => safeFetch(siteSettingsQuery, {}, fallbackSettings);
 export const getFeaturedCases = () => safeFetch(featuredCasesQuery, {}, fallbackCases);
 export const getAllCases = () => safeFetch(allCasesQuery, {}, fallbackCases);

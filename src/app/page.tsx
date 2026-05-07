@@ -12,7 +12,7 @@ import {
   getHomepage, getSettings, getFeaturedCases,
   getFounders, getClientLogos, getArticleArchive,
 } from "@/lib/data";
-import { fallbackForthcoming } from "@/lib/site";
+type ForthcomingShape = { number?: string; title: string; tag?: string; readTime?: string; slug?: string };
 
 export default async function HomePage() {
   const [homepage, settings, cases, founders, logos, archive] = await Promise.all([
@@ -20,7 +20,7 @@ export default async function HomePage() {
     getFounders(), getClientLogos(), getArticleArchive(),
   ]);
 
-  const forthcoming = (homepage as { forthcomingArticle?: typeof fallbackForthcoming }).forthcomingArticle ?? fallbackForthcoming;
+  const forthcoming = (homepage as { forthcomingArticle?: ForthcomingShape | null }).forthcomingArticle ?? null;
 
   return (
     <>
