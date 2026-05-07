@@ -1,0 +1,110 @@
+import { NextRequest, NextResponse } from "next/server";
+
+export const runtime = "nodejs";
+
+// Roster signups feed an existing Google Sheet via a small Apps Script Web App.
+//
+// === SETUP (one-time, by the sheet owner) ===
+//
+// 1. Open the destination Google Sheet.
+// 2. Extensions → Apps Script (a new tab opens).
+// 3. Replace the contents of Code.gs with:
+//
+//    const SHEET_NAME = "Roster"; // change to whatever tab you want rows on
+//    const HEADERS = ["timestamp","firstName","lastName","expertise","email","linkedin","portfolio","message"];
+//
+//    function doPost(e) {
+//      const body = JSON.parse(e.postData.contents);
+//      const ss = SpreadsheetApp.getActiveSpreadsheet();
+//      let sheet = ss.getSheetByName(SHEET_NAME);
+//      if (!sheet) sheet = ss.insertSheet(SHEET_NAME);
+//      // Ensure header row exists
+//      if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
+//      const row = HEADERS.map(h => h === "timestamp" ? new Date() : (body[h] || ""));
+//      sheet.appendRow(row);
+//      return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
+//    }
+//
+// 4. Click Deploy → New deployment → choose type "Web app".
+//    - "Execute as": Me
+//    - "Who has access": Anyone
+//    - Click Deploy. Authorize when prompted.
+// 5. Copy the Web app URL (ends in /exec).
+// 6. In Vercel → Settings → Environment Variables, add:
+//      GOOGLE_SHEET_ROSTER_URL = <the /exec URL>
+//    Mark as Sensitive. Redeploy.
+//
+// Until that env var is set, this endpoint returns a friendly error so we
+// don't silently swallow signups.
+
+type Body = {
+  firstName?: string;
+  lastName?: string;
+  expertise?: string;
+  email?: string;
+  linkedin?: string;
+  portfolio?: string;
+  message?: string;
+  // honeypot
+  website?: string;
+};
+
+export async function POST(req: NextRequest) {
+  let body: Body;
+  try { body = await req.json(); }
+  catch { return NextResponse.json({ error: "Invalid JSON" }, { status: 400 }); }
+
+  // Bots fill the hidden honeypot. Silently accept without forwarding.
+  if (body.website) return NextResponse.json({ ok: true });
+
+  // Required-field validation
+  const missing = (["firstName", "lastName", "expertise", "email", "linkedin"] as const)
+    .filter((k) => !body[k]?.trim());
+  if (missing.length) {
+    return NextResponse.json({ error: `Missing required: ${missing.join(", ")}` }, { status: 400 });
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email!)) {
+    return NextResponse.json({ error: "Email looks invalid" }, { status: 400 });
+  }
+  if (!/^https?:\/\//i.test(body.linkedin!)) {
+    return NextResponse.json({ error: "LinkedIn must be a full URL (https://…)" }, { status: 400 });
+  }
+
+  const sheetUrl = process.env.GOOGLE_SHEET_ROSTER_URL;
+  if (!sheetUrl) {
+    console.warn("[roster] GOOGLE_SHEET_ROSTER_URL not configured. Submission:", body);
+    return NextResponse.json(
+      { error: "Roster signup is not yet configured. Email hello@a-r.studio with your details." },
+      { status: 503 },
+    );
+  }
+
+  const payload = {
+    firstName: (body.firstName || "").trim(),
+    lastName:  (body.lastName  || "").trim(),
+    expertise: (body.expertise || "").trim(),
+    email:     (body.email     || "").trim(),
+    linkedin:  (body.linkedin  || "").trim(),
+    portfolio: (body.portfolio || "").trim(),
+    message:   (body.message   || "").trim(),
+  };
+
+  try {
+    const res = await fetch(sheetUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      // Apps Script web apps redirect once; fetch follows by default.
+      redirect: "follow",
+    });
+    if (!res.ok) {
+      const txt = await res.text().catch(() => "");
+      console.error("[roster] Apps Script returned", res.status, txt);
+      return NextResponse.json({ error: "Sheet write failed. Try again or email us." }, { status: 502 });
+    }
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("[roster] fetch failed:", err);
+    return NextResponse.json({ error: "Could not reach the sheet. Try again later." }, { status: 502 });
+  }
+}

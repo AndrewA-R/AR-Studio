@@ -1,6 +1,6 @@
 import { PageShell } from "@/components/PageShell";
 import { PageHero } from "@/components/PageHero";
-import { ContactForm } from "@/components/ContactForm";
+import { RosterForm } from "@/components/RosterForm";
 
 export const metadata = { title: "Join the roster" };
 
@@ -15,7 +15,7 @@ export default function JoinRosterPage() {
       />
       <section className="bg-paper px-[clamp(24px,4vw,56px)] py-24">
         <div className="max-w-content mx-auto">
-          <ContactForm kind="roster" />
+          <RosterForm />
         </div>
       </section>
     </PageShell>
