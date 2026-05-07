@@ -92,7 +92,11 @@ export const articleArchiveQuery = groq`*[_type == "article" && status == "publi
 }`;
 
 export const articleBySlugQuery = groq`*[_type == "article" && slug.current == $slug][0]{
-  ..., "slug": slug.current
+  ..., "slug": slug.current,
+  body[]{
+    ...,
+    _type == "image" => { ..., "url": asset->url }
+  }
 }`;
 
 export const foundersQuery = groq`*[_type == "founder"] | order(order asc)`;
