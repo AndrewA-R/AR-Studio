@@ -53,5 +53,5 @@
   /* Scoped underline for prose links — only inside .prose-ar, never globally */
   .prose-ar a { color: var(--accent); border-bottom: 1px solid currentColor; padding-bottom: 1px; text-decoration: none; }
   .prose-ar a:hover { color: var(--accent-strong); }
-  .prose-ar p { margin: 0 0 16px; max-width: 60ch; }
+  .prose-ar p { margin: 0 0 16px; }
 }

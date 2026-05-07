@@ -47,7 +47,7 @@ export default async function ArticlePage({ params }: Props) {
               {slug.replace(/-/g, " ")}
             </h1>
             <Byline />
-            <div className="prose-ar mt-12 max-w-prose text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.65 }}>
+            <div className="prose-ar mt-12 text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.65 }}>
               <p>Article content will be loaded from Sanity once the CMS is connected. Replace this slug ({slug}) with a real essay in the Studio.</p>
             </div>
           </div>
@@ -71,11 +71,11 @@ export default async function ArticlePage({ params }: Props) {
           </h1>
           <Byline author={article.author} publishedAt={article.publishedAt} />
           {article.excerpt && (
-            <p className="mt-9 max-w-[60ch] italic text-ink-600" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 24, lineHeight: 1.4, whiteSpace: "pre-line" }}>
+            <p className="mt-9 italic text-ink-600" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 24, lineHeight: 1.4, whiteSpace: "pre-line" }}>
               {article.excerpt}
             </p>
           )}
-          <div className="prose-ar mt-12 max-w-prose text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.65 }}>
+          <div className="prose-ar mt-12 text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.65 }}>
             {article.body ? <PortableText value={article.body as never} /> : null}
           </div>
         </div>
