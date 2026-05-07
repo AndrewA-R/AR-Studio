@@ -39,7 +39,7 @@ export default function CaseMasthead({
               {italic && <><br /><span style={{fontStyle: 'italic', color: AR_PURPLE}}>{italic}</span></>}
             </h1>
           </div>
-          <div style={{fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.55, color: AR_INK_600, maxWidth: '46ch'}}>
+          <div style={{fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.55, color: AR_INK_600, maxWidth: '46ch', whiteSpace: 'pre-line'}}>
             {lede}
           </div>
         </div>

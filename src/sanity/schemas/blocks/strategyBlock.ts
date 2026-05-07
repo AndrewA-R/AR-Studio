@@ -16,9 +16,15 @@ export default defineType({
     defineField({name: 'body',   title: 'Body',   type: 'text', rows: 8}),
     defineField({name: 'positioning', title: 'Positioning pull', type: 'string',
       description: 'One-sentence positioning line, set big in italic. Optional.'}),
+    defineField({name: 'image', title: 'Right-side image', type: 'image', options: {hotspot: true},
+      description: 'Optional. If set, renders on the right column in place of the Framework table.'}),
+    defineField({name: 'imageRatio', title: 'Image aspect ratio', type: 'string',
+      options: {list: ['21/9', '16/9', '4/3', '1/1', '4/5', '3/4', '9/16']}, initialValue: '4/5',
+      description: 'Only used when an image is uploaded.'}),
+    defineField({name: 'imageCaption', title: 'Image caption', type: 'string'}),
     defineField({
       name: 'framework', title: 'Framework rows', type: 'array',
-      description: 'Optional table — typical labels: Audience, Promise, Mechanic, Tone.',
+      description: 'Optional table — typical labels: Audience, Promise, Mechanic, Tone. Hidden when an image is uploaded.',
       validation: (r) => r.max(6),
       of: [{
         type: 'object',

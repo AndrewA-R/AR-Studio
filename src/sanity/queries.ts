@@ -74,6 +74,10 @@ export const caseBySlugQuery = groq`*[_type == "caseStudy" && slug.current == $s
         "videoType": video.asset->mimeType
       }
     },
+    _type == "strategyBlock" => {
+      ...,
+      "imageSrc": image.asset->url
+    },
     _type == "videoBlock" => {
       ...,
       "videoSrc": video.asset->url,

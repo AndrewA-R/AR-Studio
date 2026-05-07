@@ -74,6 +74,9 @@ export interface CaseStrategyProps {
   body?: ReactNode;
   positioning?: string;
   framework?: FrameworkRow[];
+  imageSrc?: string;
+  imageRatio?: string;
+  imageCaption?: string;
   dark?: boolean;
 }
 

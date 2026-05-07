@@ -48,6 +48,7 @@ export default function CaseSectionHeader({n, kicker, title, lede, dark = false,
             lineHeight: 1.55,
             color: dim,
             maxWidth: LEDE_MAX,
+            whiteSpace: 'pre-line',
           }}>{lede}</div>
         )}
       </div>

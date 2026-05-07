@@ -13,7 +13,7 @@ export default function CaseDiagnosis({n = '04', kicker = 'Diagnosis', title, pa
         <div style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 64, alignItems: 'start'}}>
           <div>
             {paragraphs.map((p, i) => (
-              <p key={i} style={{fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.65, color: i === 0 ? AR_INK : AR_INK_600, margin: '0 0 24px', maxWidth: '60ch'}}>{p}</p>
+              <p key={i} style={{fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.65, color: i === 0 ? AR_INK : AR_INK_600, margin: '0 0 24px', maxWidth: '60ch', whiteSpace: 'pre-line'}}>{p}</p>
             ))}
           </div>
           {callout && (
