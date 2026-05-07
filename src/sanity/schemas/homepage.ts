@@ -1,47 +1,76 @@
 import { defineField, defineType } from "sanity";
 
 // Singleton — homepage copy. The Studio enforces single-doc via structure.ts.
+//
+// Field order below mirrors the order sections appear on the live site:
+//   1. Hero  →  2. Why A+R exists  →  3. Carousel  →  4. The studio
+//   →  5. Brands we've worked with  →  6. Thinking (forthcoming card)
+// Fieldsets give each section a collapsible header in Studio so editing
+// any one section feels like editing that section on the page.
 export const homepage = defineType({
   name: "homepage",
   title: "Homepage",
   type: "document",
+  fieldsets: [
+    { name: "hero",      title: "1. Hero",                  options: { collapsible: true, collapsed: false } },
+    { name: "thesis",    title: "2. Why A+R exists",        options: { collapsible: true, collapsed: true } },
+    { name: "carousel",  title: "3. Carousel",              options: { collapsible: true, collapsed: true } },
+    { name: "founders",  title: "4. The studio",            options: { collapsible: true, collapsed: true } },
+    { name: "roster",    title: "5. Brands we've worked with", options: { collapsible: true, collapsed: true } },
+    { name: "thinking",  title: "6. Thinking (forthcoming card)", options: { collapsible: true, collapsed: true } },
+  ],
   fields: [
-    defineField({ name: "heroLede", title: "Hero lede (italic)", type: "text", rows: 3 }),
-    defineField({ name: "heroLedeAccent", title: "Hero lede — accent line (purple italic)", type: "string" }),
-    defineField({ name: "heroBody", title: "Hero body paragraph", type: "text", rows: 4 }),
-    defineField({ name: "carouselThesis", title: "Carousel thesis (display)", type: "text", rows: 2 }),
-    defineField({ name: "carouselThesisAccent", title: "Carousel thesis — italic accent clause", type: "text", rows: 2 }),
-    defineField({ name: "carouselBodyTop", title: "Carousel body — top paragraph", type: "text", rows: 5 }),
-    defineField({ name: "carouselBodyBottom", title: "Carousel body — bottom paragraph", type: "text", rows: 4 }),
-    defineField({ name: "carouselKickerRight", title: "Carousel section — kicker bar (right side)", type: "text", rows: 2,
-      description: "Top-right of the Carousel section, opposite '§ What sets us apart'. Newlines preserved." }),
-    defineField({ name: "carouselClosingQuote", title: "Carousel section — closing italic quote", type: "text", rows: 2,
-      description: "Shown above the 'Tour Carousel' button. e.g. 'No other studio our size has built one. That is the point.'" }),
-    defineField({ name: "thesisHeading", title: "Why A+R exists — heading", type: "text", rows: 4 }),
-    defineField({ name: "thesisHeadingAccent", title: "Why A+R exists — italic accent clause", type: "string" }),
-    defineField({ name: "thesisBodyTop", title: "Why A+R exists — first paragraph (left column)", type: "text", rows: 5 }),
-    defineField({ name: "thesisBodyBottom", title: "Why A+R exists — second paragraph (left column)", type: "text", rows: 5 }),
-    defineField({ name: "fractures", title: "The fractures (numbered list on dark)", type: "array",
+    // 1. Hero
+    defineField({ name: "heroLede",       title: "Hero lede (italic)",                          type: "text",   rows: 3, fieldset: "hero" }),
+    defineField({ name: "heroLedeAccent", title: "Hero lede — accent line (purple italic)",     type: "string", fieldset: "hero" }),
+    defineField({ name: "heroBody",       title: "Hero body paragraph",                         type: "text",   rows: 4, fieldset: "hero" }),
+
+    // 2. Why A+R exists
+    defineField({ name: "thesisHeading",       title: "Heading",                       type: "text",   rows: 4, fieldset: "thesis" }),
+    defineField({ name: "thesisHeadingAccent", title: "Heading — italic accent clause", type: "string", fieldset: "thesis" }),
+    defineField({ name: "thesisBodyTop",       title: "First paragraph (left column)",  type: "text",   rows: 5, fieldset: "thesis" }),
+    defineField({ name: "thesisBodyBottom",    title: "Second paragraph (left column)", type: "text",   rows: 5, fieldset: "thesis" }),
+    defineField({
+      name: "fractures", title: "The fractures (numbered list on dark)", type: "array",
+      fieldset: "thesis",
       of: [{ type: "object", fields: [
         { name: "label", type: "string", title: "Bold label" },
-        { name: "rest", type: "string", title: "Rest of line (after em-dash)" },
+        { name: "rest",  type: "string", title: "Rest of line (after em-dash)" },
       ], preview: { select: { title: "label", subtitle: "rest" } } }],
-      validation: r => r.max(8) }),
-    defineField({ name: "rosterHeadline", title: "Roster headline", type: "text", rows: 3 }),
-    defineField({ name: "rosterHeadlineAccent", title: "Roster headline — italic accent clause", type: "string" }),
-    defineField({ name: "rosterCopy", title: "Roster intro copy", type: "text", rows: 4 }),
-    defineField({ name: "foundersHeadline", title: "Founders headline", type: "text", rows: 3 }),
-    defineField({ name: "foundersHeadlineAccent", title: "Founders headline — italic accent", type: "string" }),
-    defineField({ name: "foundersCopy", title: "Founders intro copy", type: "text", rows: 5 }),
+      validation: r => r.max(8),
+    }),
+
+    // 3. Carousel
+    defineField({ name: "carouselThesis",       title: "Thesis (display)",              type: "text",   rows: 2, fieldset: "carousel" }),
+    defineField({ name: "carouselThesisAccent", title: "Thesis — italic accent clause", type: "text",   rows: 2, fieldset: "carousel" }),
+    defineField({ name: "carouselBodyTop",      title: "Body — top paragraph",          type: "text",   rows: 5, fieldset: "carousel" }),
+    defineField({ name: "carouselBodyBottom",   title: "Body — bottom paragraph",       type: "text",   rows: 4, fieldset: "carousel" }),
+    defineField({ name: "carouselKickerRight",  title: "Kicker bar (right side)",       type: "text",   rows: 2, fieldset: "carousel",
+      description: "Top-right of the Carousel section, opposite '§ What sets us apart'. Newlines preserved." }),
+    defineField({ name: "carouselClosingQuote", title: "Closing italic quote",          type: "text",   rows: 2, fieldset: "carousel",
+      description: "Shown above the 'Tour Carousel' button." }),
+
+    // 4. The studio (founders)
+    defineField({ name: "foundersHeadline",       title: "Headline",                  type: "text",   rows: 3, fieldset: "founders" }),
+    defineField({ name: "foundersHeadlineAccent", title: "Headline — italic accent",  type: "string", fieldset: "founders" }),
+    defineField({ name: "foundersCopy",           title: "Intro copy",                type: "text",   rows: 5, fieldset: "founders" }),
+
+    // 5. Brands (roster)
+    defineField({ name: "rosterHeadline",       title: "Headline",                  type: "text",   rows: 3, fieldset: "roster" }),
+    defineField({ name: "rosterHeadlineAccent", title: "Headline — italic accent",  type: "string", fieldset: "roster" }),
+    defineField({ name: "rosterCopy",           title: "Intro copy",                type: "text",   rows: 4, fieldset: "roster" }),
+
+    // 6. Thinking — forthcoming card
     defineField({
       name: "forthcomingArticle",
       title: "Forthcoming article (preview card)",
       description: "Standalone teaser shown above the archive on /thinking. Fill in to show the card; clear all fields to hide it. No link to a real Article doc — just metadata.",
       type: "object",
+      fieldset: "thinking",
       fields: [
-        { name: "title", title: "Title", type: "string" },
-        { name: "number", title: "Essay number (e.g. 04)", type: "string" },
-        { name: "tag", title: "Category tag", type: "string",
+        { name: "title",    title: "Title",            type: "string" },
+        { name: "number",   title: "Essay number (e.g. 04)", type: "string" },
+        { name: "tag",      title: "Category tag",     type: "string",
           options: { list: ["Strategy", "Operations", "Industry", "Manifesto", "Craft"] } },
         { name: "readTime", title: "Read time / release line",
           description: "e.g. \"publishes May 2026\" or \"8 min\"",
