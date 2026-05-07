@@ -32,7 +32,6 @@ export function Contact() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/contact" className="btn-primary text-sm px-[22px] py-3.5">Start a conversation →</Link>
-              <a href="mailto:hello@a-r.studio" className="btn-link">hello@a-r.studio</a>
             </div>
           </div>
         </div>

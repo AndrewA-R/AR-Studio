@@ -18,11 +18,11 @@ export default async function ContactPage() {
           <aside className="space-y-6">
             <div>
               <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Direct</div>
-              <a href="mailto:hello@a-r.studio" className="block mt-2 text-ink border-b border-ink pb-1 no-underline w-fit">hello@a-r.studio</a>
+              <a href="mailto:andrew@a-r.studio" className="block mt-2 text-ink border-b border-ink pb-1 no-underline w-fit">andrew@a-r.studio</a>
             </div>
             <div>
               <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Studio</div>
-              <div className="mt-2 text-ink-600">Los Angeles<br /><span className="text-ink-400">by appointment</span></div>
+              <div className="mt-2 text-ink-600">Los Angeles</div>
             </div>
             <div>
               <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Roster</div>

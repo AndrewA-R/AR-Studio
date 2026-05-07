@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
   if (!sheetUrl) {
     console.warn("[roster] GOOGLE_SHEET_ROSTER_URL not configured. Submission:", body);
     return NextResponse.json(
-      { error: "Roster signup is not yet configured. Email hello@a-r.studio with your details." },
+      { error: "Roster signup is not yet configured. Email andrew@a-r.studio with your details." },
       { status: 503 },
     );
   }

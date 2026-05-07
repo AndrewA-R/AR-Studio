@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL || "andrew@a-r.studio";
-  const from = process.env.CONTACT_FROM_EMAIL || "hello@a-r.studio";
+  const from = process.env.CONTACT_FROM_EMAIL || "andrew@a-r.studio";
 
   if (!apiKey) {
     // No Resend key yet — log to server and accept submission so the form
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
 
   if (error) {
     console.error("[contact] resend error:", error);
-    return NextResponse.json({ error: "Could not send. Try emailing hello@a-r.studio directly." }, { status: 502 });
+    return NextResponse.json({ error: "Could not send. Try emailing andrew@a-r.studio directly." }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });

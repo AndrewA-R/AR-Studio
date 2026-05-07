@@ -26,7 +26,7 @@ export async function POST(req: Request) {
   if (!apiKey || !listId || !dc) {
     console.warn("[newsletter] Mailchimp env vars missing");
     return NextResponse.json(
-      { error: "Newsletter signup is not yet configured. Email hello@a-r.studio to subscribe." },
+      { error: "Newsletter signup is not yet configured. Email andrew@a-r.studio to subscribe." },
       { status: 503 },
     );
   }
