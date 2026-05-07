@@ -24,7 +24,8 @@ export default defineType({
       description: "Optional. Shown before the video loads, or if the video fails." }),
 
     defineField({ name: "ratio", title: "Aspect ratio", type: "string",
-      options: { list: ["16/9", "4/5", "1/1", "3/4", "21/9"] }, initialValue: "16/9" }),
+      options: { list: ["21/9", "16/9", "1/1", "4/5", "3/4", "9/16"] }, initialValue: "16/9",
+      description: "Wide → tall. Use 9/16 for vertical phone-format clips." }),
     defineField({ name: "fullBleed", title: "Full-bleed", type: "boolean", initialValue: false,
       description: "When true, video extends edge-to-edge. When false, sits within the page container." }),
     defineField({ name: "caption", title: "Caption", type: "string",
