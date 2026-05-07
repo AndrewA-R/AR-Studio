@@ -10,6 +10,7 @@ import React from 'react';
 import {AR_INK, AR_PAPER, AR_PURPLE, AR_PURPLE_300, AR_PURPLE_INK, AR_WHITE} from './tokens';
 import CaseSectionHeader from './CaseSectionHeader';
 import Placeholder from './Placeholder';
+import CaseVideoPlayer from './CaseVideoPlayer';
 
 const COL_GUTTER = 12;
 const ROW_UNIT   = 24;
@@ -58,12 +59,7 @@ function GalleryGrid({items = [], dark}) {
             border: `1px solid ${dark ? 'rgba(253,252,248,0.14)' : 'rgba(17,16,16,0.10)'}`,
           }}>
             {videoSrc
-              ? <video
-                  autoPlay loop muted playsInline preload="auto"
-                  poster={imgSrc || undefined}
-                  style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}>
-                  <source src={videoSrc} type={videoType} />
-                </video>
+              ? <CaseVideoPlayer src={videoSrc} type={videoType} poster={imgSrc} fit="cover" />
               : imgSrc
               ? <img src={imgSrc} alt={it.caption || ''} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}} />
               : <Placeholder label={it.label || String(i + 1).padStart(2, '0')} caption={it.caption} dark={dark} />}

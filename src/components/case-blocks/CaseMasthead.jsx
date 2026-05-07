@@ -8,6 +8,7 @@
 import React from 'react';
 import {AR_PAPER, AR_INK, AR_INK_400, AR_INK_600, AR_PURPLE, AR_PURPLE_300, AR_WHITE} from './tokens';
 import Placeholder from './Placeholder';
+import CaseVideoPlayer from './CaseVideoPlayer';
 
 export default function CaseMasthead({
   caseNo, sector, tier, dates,
@@ -46,12 +47,7 @@ export default function CaseMasthead({
         <div style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 24, marginTop: 32}}>
           <div style={{position: 'relative', aspectRatio: '5 / 3', background: AR_WHITE, overflow: 'hidden'}}>
             {videoSrc
-              ? <video
-                  autoPlay loop muted playsInline preload="auto"
-                  poster={image}
-                  style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block'}}>
-                  <source src={videoSrc} type={videoType || 'video/mp4'} />
-                </video>
+              ? <CaseVideoPlayer src={videoSrc} type={videoType} poster={image} fit="cover" />
               : image
               ? <img src={image} alt={wordmark} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block'}} />
               : <Placeholder label="01" caption="Hero image" />}

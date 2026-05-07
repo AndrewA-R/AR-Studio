@@ -5,6 +5,7 @@
 import React from 'react';
 import { AR_INK, AR_INK_400, AR_PAPER, AR_WHITE } from './tokens';
 import CaseSectionHeader from './CaseSectionHeader';
+import CaseVideoPlayer from './CaseVideoPlayer';
 
 export default function CaseVideo({
   n = '07',
@@ -22,13 +23,7 @@ export default function CaseVideo({
 
   const inner = (
     <div style={{ position: 'relative', aspectRatio: ratio, background: AR_INK, overflow: 'hidden' }}>
-      <video
-        autoPlay loop muted playsInline preload="auto"
-        poster={posterSrc || undefined}
-        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-      >
-        <source src={videoSrc} type={videoType || 'video/mp4'} />
-      </video>
+      <CaseVideoPlayer src={videoSrc} type={videoType} poster={posterSrc} fit="cover" />
     </div>
   );
 

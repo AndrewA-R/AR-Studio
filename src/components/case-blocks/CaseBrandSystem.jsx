@@ -5,6 +5,7 @@ import React from 'react';
 import {AR_INK, AR_INK_400, AR_PAPER, AR_WHITE} from './tokens';
 import CaseSectionHeader from './CaseSectionHeader';
 import Placeholder from './Placeholder';
+import CaseVideoPlayer from './CaseVideoPlayer';
 
 export default function CaseBrandSystem({n = '06', kicker = 'The system', title, body, palette = [], typography, layoutSlots, templates, logoSrc}) {
   // Prefer the new `templates` array (each item has label + image). Fall
@@ -56,12 +57,7 @@ export default function CaseBrandSystem({n = '06', kicker = 'The system', title,
             return (
               <div key={i} style={{gridColumn: 'span 4', aspectRatio: '4/5', border: '1px solid rgba(17,16,16,0.14)', position: 'relative', overflow: 'hidden', background: AR_WHITE}}>
                 {videoSrc
-                  ? <video
-                      autoPlay loop muted playsInline preload="auto"
-                      poster={imgSrc || undefined}
-                      style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}>
-                      <source src={videoSrc} type={videoType} />
-                    </video>
+                  ? <CaseVideoPlayer src={videoSrc} type={videoType} poster={imgSrc} fit="cover" />
                   : imgSrc
                   ? <img src={imgSrc} alt={t.caption || label} style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}} />
                   : <Placeholder label={label} caption={t.caption || 'Layout template'} />}
