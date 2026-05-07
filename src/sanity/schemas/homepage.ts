@@ -79,8 +79,8 @@ export const homepage = defineType({
     defineField({ name: "carouselThesisAccent", title: "Thesis — italic accent clause", type: "text",   rows: 2, fieldset: "carousel" }),
     defineField({ name: "carouselBodyTop",      title: "Body — top paragraph",          type: "text",   rows: 5, fieldset: "carousel" }),
     defineField({ name: "carouselBodyBottom",   title: "Body — bottom paragraph",       type: "text",   rows: 4, fieldset: "carousel" }),
-    defineField({ name: "carouselKickerRight",  title: "Kicker bar (right side)",       type: "text",   rows: 2, fieldset: "carousel",
-      description: "Top-right of the Carousel section, opposite '§ What sets us apart'. Newlines preserved." }),
+    defineField({ name: "carouselKickerRight",  title: "Kicker bar (currently unused)", type: "text",   rows: 2, fieldset: "carousel",
+      description: "Not rendered on the live site since the top kicker bar was removed. Held here in case it returns." }),
     defineField({ name: "carouselClosingQuote", title: "Closing italic quote",          type: "text",   rows: 2, fieldset: "carousel",
       description: "Shown above the 'Tour Carousel' button." }),
 

@@ -50,7 +50,6 @@ export default async function HomePage() {
         bodyTop={homepage.carouselBodyTop}
         bodyBottom={homepage.carouselBodyBottom}
         closingQuote={homepage.carouselClosingQuote}
-        kickerRight={homepage.carouselKickerRight || "An AI-Powered Marketing Operating System\nbuilt by A+R."}
       />
       <Founders
         headline={homepage.foundersHeadline}

@@ -8,19 +8,11 @@ type Props = {
   bodyTop: string;
   bodyBottom: string;
   closingQuote: string;
-  kickerRight: string;
 };
 
-export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom, closingQuote, kickerRight }: Props) {
+export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom, closingQuote }: Props) {
   return (
     <section className="bg-purple-950 text-bone">
-      <div className="wrap pt-6">
-        <div className="flex flex-wrap justify-between items-baseline gap-x-8 gap-y-2 pb-3.5 border-b border-bone/20 font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300">
-          <span>§ What sets us apart</span>
-          <span className="text-right max-w-[40ch]" style={{ whiteSpace: "pre-line" }}>{kickerRight}</span>
-        </div>
-      </div>
-
       <div className="relative overflow-hidden" style={{ padding: "clamp(64px,7vw,120px) clamp(24px,4vw,56px) clamp(64px,7vw,112px)" }}>
         <div
           aria-hidden
@@ -34,11 +26,8 @@ export function CarouselFeature({ thesis, thesisAccent, bodyTop, bodyBottom, clo
         <div className="relative max-w-wide mx-auto">
           <div className="flex items-center gap-6 mb-9 pb-6 border-b border-bone/20">
             <Image src="/brand/carousel-wordmark-ko.png" alt="Carousel" width={400} height={88} className="w-auto" style={{ height: "clamp(56px, 6vw, 88px)" }} />
-            <div className="flex-1 flex items-center gap-3.5 font-mono text-[11px] tracking-[0.18em] uppercase text-bone/60">
-              <span className="w-2 h-2 rounded-full bg-purple-300 inline-block" />
-              <span>Software · A+R proprietary · AI-native</span>
-            </div>
-            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-bone/60">v3.4 · April 2026</span>
+            <div className="flex-1" />
+            <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-bone/60">Current Build: V3.4 April 2026</span>
           </div>
 
           {/* Two-column body: headline + copy + numbered list on the left,
