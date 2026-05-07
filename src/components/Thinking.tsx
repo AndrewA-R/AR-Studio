@@ -9,7 +9,9 @@ function formatDate(d?: string) {
   return date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
 
-export function Thinking({ archive, forthcoming }: { archive: Article[]; forthcoming: Forthcoming }) {
+export function Thinking({
+  archive, forthcoming, showAllEssaysLink = true,
+}: { archive: Article[]; forthcoming: Forthcoming; showAllEssaysLink?: boolean }) {
   return (
     <section id="thinking" className="bg-paper py-[88px] px-[clamp(24px,4vw,56px)]">
       <div className="max-w-wide mx-auto">
@@ -31,7 +33,9 @@ export function Thinking({ archive, forthcoming }: { archive: Article[]; forthco
               Essays from A+R. <span className="italic text-purple-700">Published when we have something to say.</span>
             </h2>
           </div>
-          <Link href="/thinking" className="font-ui text-sm text-ink border-b border-ink no-underline whitespace-nowrap">All essays →</Link>
+          {showAllEssaysLink && (
+            <Link href="/thinking" className="font-ui text-sm text-ink border-b border-ink no-underline whitespace-nowrap">All essays →</Link>
+          )}
         </div>
 
         {forthcoming?.title && (
