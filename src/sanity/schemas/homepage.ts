@@ -31,7 +31,10 @@ export const homepage = defineType({
     defineField({ name: "thesisBodyTop",       title: "First paragraph (left column)",  type: "text",   rows: 5, fieldset: "thesis" }),
     defineField({ name: "thesisBodyBottom",    title: "Second paragraph (left column)", type: "text",   rows: 5, fieldset: "thesis" }),
     defineField({
-      name: "fractures", title: "The fractures (numbered list on dark)", type: "array",
+      name: "fractures",
+      title: "The fractures (currently unused)",
+      description: "Not rendered on the live site. Held here in case we bring back the numbered list in a future module — your data is safe.",
+      type: "array",
       fieldset: "thesis",
       of: [{ type: "object", fields: [
         { name: "label", type: "string", title: "Bold label" },

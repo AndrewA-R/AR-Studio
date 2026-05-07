@@ -35,7 +35,6 @@ export default async function HomePage() {
       <Thesis
         heading={homepage.thesisHeading}
         headingAccent={homepage.thesisHeadingAccent}
-        fractures={homepage.fractures}
         bodyTop={homepage.thesisBodyTop}
         bodyBottom={homepage.thesisBodyBottom}
       />

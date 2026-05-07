@@ -1,41 +1,45 @@
-type Fracture = { label: string; rest: string };
-
 export function Thesis({
-  heading, headingAccent, fractures, bodyTop, bodyBottom,
-}: { heading: string; headingAccent: string; fractures: Fracture[]; bodyTop: string; bodyBottom: string }) {
+  heading, headingAccent, bodyTop, bodyBottom,
+}: { heading: string; headingAccent: string; bodyTop: string; bodyBottom: string }) {
   return (
-    <section className="bg-ink text-bone py-[120px] px-[clamp(24px,4vw,56px)]">
+    <section className="bg-ink text-bone py-[clamp(96px,12vh,160px)] px-[clamp(24px,4vw,56px)]">
       <div className="max-w-wide mx-auto">
-        <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300 mb-8">§ Why A+R exists</div>
+        <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300 mb-12">§ Why A+R exists</div>
+
+        {/* Manifesto headline. Heading and accent stack on their own lines —
+            the accent isn't a clause, it's the punchline. */}
         <h2
-          className="m-0 max-w-[22ch] text-bone text-balance"
+          className="m-0 text-bone text-balance max-w-[16ch]"
           style={{
             fontFamily: '"Instrument Serif", serif',
-            fontSize: "clamp(48px, 6vw, 96px)",
-            lineHeight: 1.0,
-            letterSpacing: "-0.025em",
+            fontSize: "clamp(64px, 10vw, 168px)",
+            lineHeight: 0.95,
+            letterSpacing: "-0.028em",
             fontWeight: 400,
             whiteSpace: "pre-line",
           }}
         >
-          {heading} <span className="italic text-purple-300">{headingAccent}</span>
+          {heading}
+          <br />
+          <span className="italic text-purple-300">{headingAccent}</span>
         </h2>
-        <div className="mt-[72px] grid grid-cols-1 lg:grid-cols-2 gap-y-12 gap-x-20 items-start">
-          <div>
-            <p className="m-0 max-w-[46ch] text-bone/80" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6, whiteSpace: "pre-line" }}>{bodyTop}</p>
-            <p className="mt-5 m-0 max-w-[46ch] text-bone/80" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.6, whiteSpace: "pre-line" }}>{bodyBottom}</p>
-          </div>
-          <div className="border-t border-bone/20">
-            {fractures.map((f, i) => (
-              <div key={i} className="grid grid-cols-[40px_1fr] gap-4 py-4 border-b border-bone/10 items-baseline">
-                <span className="font-mono text-[11px] tracking-[0.18em] text-purple-300">§{String(i + 1).padStart(2, "0")}</span>
-                <span style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 17, lineHeight: 1.45 }} className="text-bone">
-                  <strong className="font-semibold">{f.label}</strong>
-                  <span className="text-bone/70"> — {f.rest}</span>
-                </span>
-              </div>
-            ))}
-          </div>
+
+        {/* Single column body. Wider max (60ch) and bigger type so the
+            argument carries the section. Both fields render with
+            whiteSpace pre-line so Sanity returns become breaks. */}
+        <div className="mt-[clamp(72px,10vh,128px)] max-w-[60ch]">
+          <p
+            className="m-0 text-bone/85"
+            style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: "clamp(20px, 1.6vw, 24px)", lineHeight: 1.55, whiteSpace: "pre-line" }}
+          >
+            {bodyTop}
+          </p>
+          <p
+            className="mt-8 m-0 text-bone"
+            style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: "clamp(20px, 1.6vw, 24px)", lineHeight: 1.55, whiteSpace: "pre-line" }}
+          >
+            {bodyBottom}
+          </p>
         </div>
       </div>
     </section>
