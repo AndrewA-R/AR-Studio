@@ -22,7 +22,7 @@ const tiers = [
 export default function ServicesPage() {
   return (
     <PageShell>
-      <main style={{ background: "#FDFCF8" }} className="text-ink px-[clamp(24px,4vw,56px)] pt-14 pb-16 min-h-[1280px]">
+      <main className="bg-paper text-ink px-[clamp(24px,4vw,56px)] pt-14 pb-16 min-h-[1280px]">
         <div className="max-w-[1320px] mx-auto">
           {/* Top meta bar */}
           <div className="flex justify-between pb-3.5 border-b border-ink/15 font-mono text-[11px] tracking-[0.22em] uppercase text-ink-400">
