@@ -77,6 +77,7 @@ export interface CaseStrategyProps {
   imageSrc?: string;
   imageRatio?: string;
   imageCaption?: string;
+  flip?: boolean;
   dark?: boolean;
 }
 

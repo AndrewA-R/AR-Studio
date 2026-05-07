@@ -22,6 +22,9 @@ export default defineType({
       options: {list: ['21/9', '16/9', '4/3', '1/1', '4/5', '3/4', '9/16']}, initialValue: '4/5',
       description: 'Only used when an image is uploaded.'}),
     defineField({name: 'imageCaption', title: 'Image caption', type: 'string'}),
+    defineField({name: 'flip', title: 'Flip layout (image left, text right)', type: 'boolean',
+      initialValue: false,
+      description: 'Default: text left, image/framework right. Turn on to swap columns.'}),
     defineField({
       name: 'framework', title: 'Framework rows', type: 'array',
       description: 'Optional table — typical labels: Audience, Promise, Mechanic, Tone. Hidden when an image is uploaded.',
