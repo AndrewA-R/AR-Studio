@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata = { title: "Services" };
@@ -27,7 +28,6 @@ export default function ServicesPage() {
           {/* Top meta bar */}
           <div className="flex justify-between pb-3.5 border-b border-ink/15 font-mono text-[11px] tracking-[0.22em] uppercase text-ink-400">
             <span>§ Services</span>
-            <span className="hidden md:inline">Option C · Org-chart coverage</span>
             <span>Three depths · One engagement</span>
           </div>
 
@@ -90,6 +90,10 @@ export default function ServicesPage() {
             <RuleStatement n="III">
               We bring the plan, the team, and leadership of your marketing org.
             </RuleStatement>
+          </div>
+
+          <div className="mt-16 pt-10 border-t border-ink/10 flex">
+            <Link href="/contact" className="btn-primary text-sm px-[22px] py-3.5">Start a conversation →</Link>
           </div>
         </div>
       </main>
