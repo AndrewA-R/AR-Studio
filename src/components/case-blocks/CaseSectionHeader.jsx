@@ -9,6 +9,11 @@ export default function CaseSectionHeader({n, kicker, title, lede, dark = false,
   const dim = dark ? 'rgba(253,252,248,0.7)' : AR_INK_600;
   const accent = dark ? AR_PURPLE_300 : AR_PURPLE;
   if (!title && !kicker) return null;
+  // Fixed pixel widths for the title + lede so every section header lines up
+  // identically across blocks regardless of how many characters are in the
+  // title. text-wrap: balance evens out line breaks visually.
+  const TITLE_MAX = 760;
+  const LEDE_MAX = 620;
   return (
     <div style={{
       display: 'grid',
@@ -21,11 +26,30 @@ export default function CaseSectionHeader({n, kicker, title, lede, dark = false,
       </div>
       <div>
         {title && (
-          <h2 style={{fontFamily: '"Instrument Serif", serif', fontWeight: 400, fontSize: 'clamp(34px,4vw,56px)', lineHeight: 1.04, letterSpacing: '-0.018em', margin: 0, color: fg, maxWidth: '24ch'}}>
+          <h2 style={{
+            fontFamily: '"Instrument Serif", serif',
+            fontWeight: 400,
+            fontSize: 'clamp(34px,4vw,56px)',
+            lineHeight: 1.04,
+            letterSpacing: '-0.018em',
+            margin: 0,
+            color: fg,
+            maxWidth: TITLE_MAX,
+            textWrap: 'balance',
+          }}>
             {title}
           </h2>
         )}
-        {lede && <div style={{marginTop: 18, fontFamily: '"Newsreader", Georgia, serif', fontSize: 17, lineHeight: 1.55, color: dim, maxWidth: '52ch'}}>{lede}</div>}
+        {lede && (
+          <div style={{
+            marginTop: 18,
+            fontFamily: '"Newsreader", Georgia, serif',
+            fontSize: 17,
+            lineHeight: 1.55,
+            color: dim,
+            maxWidth: LEDE_MAX,
+          }}>{lede}</div>
+        )}
       </div>
     </div>
   );
