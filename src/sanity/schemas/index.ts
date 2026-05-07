@@ -4,6 +4,7 @@ import { founder } from "./founder";
 import { clientLogo } from "./clientLogo";
 import { faq } from "./faq";
 import { homepage } from "./homepage";
+import { carouselPage } from "./carouselPage";
 import { siteSettings } from "./siteSettings";
 import { service } from "./service";
 import { carouselCapability } from "./carouselCapability";
@@ -18,6 +19,6 @@ import brandSystemBlock from "./blocks/brandSystemBlock";
 import videoBlock       from "./blocks/videoBlock";
 
 export const schemaTypes = [
-  caseStudy, article, founder, clientLogo, faq, homepage, siteSettings, service, carouselCapability,
+  caseStudy, article, founder, clientLogo, faq, homepage, carouselPage, siteSettings, service, carouselCapability,
   metricsBlock, strategyBlock, diagnosisBlock, galleryBlock, quoteBlock, brandSystemBlock, videoBlock,
 ];

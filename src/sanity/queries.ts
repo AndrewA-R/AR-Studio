@@ -2,6 +2,8 @@ import { groq } from "next-sanity";
 
 export const homepageQuery = groq`*[_type == "homepage"][0]`;
 
+export const carouselPageQuery = groq`*[_type == "carouselPage"][0]`;
+
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]`;
 
 // Tile-shape fields for the homepage Work section. We pull the new

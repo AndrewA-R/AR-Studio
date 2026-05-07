@@ -3,13 +3,13 @@
 import { client } from "@/sanity/client";
 import { projectId } from "@/sanity/env";
 import {
-  homepageQuery, siteSettingsQuery, featuredCasesQuery, allCasesQuery,
+  homepageQuery, carouselPageQuery, siteSettingsQuery, featuredCasesQuery, allCasesQuery,
   caseBySlugQuery, articleArchiveQuery, articleBySlugQuery,
   foundersQuery, clientLogosQuery, servicesQuery, faqsQuery,
   carouselCapabilitiesQuery,
 } from "@/sanity/queries";
 import {
-  fallbackHomepage, fallbackSettings, fallbackFounders, fallbackClientLogos,
+  fallbackHomepage, fallbackCarouselPage, fallbackSettings, fallbackFounders, fallbackClientLogos,
   fallbackCases, fallbackArchive, fallbackCarouselCapabilities,
 } from "./site";
 
@@ -29,6 +29,7 @@ async function safeFetch<T>(query: string, params: Record<string, unknown> = {},
 }
 
 export const getHomepage = () => safeFetch(homepageQuery, {}, { ...fallbackHomepage, forthcomingArticle: null });
+export const getCarouselPage = () => safeFetch(carouselPageQuery, {}, fallbackCarouselPage);
 export const getSettings = () => safeFetch(siteSettingsQuery, {}, fallbackSettings);
 export const getFeaturedCases = () => safeFetch(featuredCasesQuery, {}, fallbackCases);
 export const getAllCases = () => safeFetch(allCasesQuery, {}, fallbackCases);

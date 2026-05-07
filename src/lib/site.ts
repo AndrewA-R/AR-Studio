@@ -36,6 +36,14 @@ export const fallbackHomepage = {
     "A+R is structured the opposite way of a traditional agency. Andrew and Robin build the infrastructure — the engagement model, the operating system, the standards — and then assemble a tailored team of senior, fractional specialists for each engagement. We rarely staff the same team twice. No bench overhead. No media markups. No misaligned incentives. The work compounds because the system does.",
 };
 
+export const fallbackCarouselPage = {
+  kicker: "§ Carousel · v3.4",
+  heroHeading: "The operating system.",
+  heroHeadingAccent: "Built so a small team can ship like a large one.",
+  heroLede:
+    "Carousel is software A+R built and owns. You don’t buy it, you don’t log into it. You hire A+R, and Carousel is how we deliver — faster, more accountable, and without the dozen disconnected SaaS tools every other agency is duct-taping together.",
+};
+
 export const fallbackSettings = {
   title: "A+R Studio",
   tagline: "Integrated marketing, on one team",
