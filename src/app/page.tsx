@@ -39,12 +39,6 @@ export default async function HomePage() {
         bodyTop={homepage.thesisBodyTop}
         bodyBottom={homepage.thesisBodyBottom}
       />
-      <Roster
-        headline={homepage.rosterHeadline}
-        headlineAccent={homepage.rosterHeadlineAccent}
-        copy={homepage.rosterCopy}
-        logos={logos}
-      />
       <CarouselFeature
         thesis={homepage.carouselThesis}
         thesisAccent={homepage.carouselThesisAccent}
@@ -58,6 +52,12 @@ export default async function HomePage() {
         headlineAccent={homepage.foundersHeadlineAccent}
         copy={homepage.foundersCopy}
         founders={founders}
+      />
+      <Roster
+        headline={homepage.rosterHeadline}
+        headlineAccent={homepage.rosterHeadlineAccent}
+        copy={homepage.rosterCopy}
+        logos={logos}
       />
       <Thinking archive={archive} forthcoming={forthcoming} />
       <Contact />
