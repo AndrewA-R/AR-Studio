@@ -65,7 +65,7 @@ export default async function HomePage() {
       />
       <Thinking archive={archive} forthcoming={forthcoming} />
       <Contact />
-      <SiteFooter signoff={settings.footerSignoff} signoffAccent={settings.footerSignoffAccent} />
+      <SiteFooter minimal />
     </>
   );
 }
