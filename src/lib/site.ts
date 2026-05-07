@@ -19,6 +19,13 @@ export const fallbackHomepage = {
   thesisHeadingAccent: "A+R is putting it back together.",
   thesisBodyTop: "That’s the entire thesis of the business. Not a service we offer, not a vertical, not a deck slide — the perspective we bring to every engagement. The commission can be narrow. The thinking never is.",
   thesisBodyBottom: "Closing those gaps requires three things at once: a way of working that doesn’t segment talent by lane, an operating system that lets the work compound across disciplines, and a business model that doesn’t profit from the fractures staying open. We built the studio around all three.",
+  thesisPivot: "A+R was built as a counter-argument to all of this.",
+  thesisRebuttals: [
+    { lead: "We are generalist experts.", tail: "We build omnichannel campaigns from strategy straight through to summary." },
+    { lead: "We're organized around an Operating System", tail: "that connects everything and everyone." },
+    { lead: "We staff uniquely", tail: "for every project — no unnecessary overhead." },
+    { lead: "We do not mark up media,", tail: "we do not work for performance incentives, and we do not bill by the hour." },
+  ],
   fractures: [
     { label: "Brand and performance", rest: "measured separately, briefed separately, rarely speak." },
     { label: "Strategy and execution", rest: "live in different rooms with different vocabularies." },

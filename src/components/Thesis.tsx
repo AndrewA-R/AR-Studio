@@ -1,66 +1,133 @@
-// Split bodyTop on the LAST blank line so the closing line ("A+R was built
-// as a counter-argument...") can be set bolder and larger as the pivot
-// between the diagnosis and the answer. Falls back gracefully to a single
-// block if no blank line is present.
-function splitPivot(s: string): { prefix: string; pivot: string } {
-  const t = (s ?? "").replace(/\r\n/g, "\n");
-  const i = t.lastIndexOf("\n\n");
-  if (i === -1) return { prefix: "", pivot: t };
-  return { prefix: t.slice(0, i).trimEnd(), pivot: t.slice(i + 2).trim() };
+type Rebuttal = { lead: string; tail: string };
+
+// Split bodyTop into paragraphs on blank lines so the indictment can render
+// as two centered paragraphs per the Variant C handoff.
+function paragraphs(s: string): string[] {
+  return (s ?? "")
+    .replace(/\r\n/g, "\n")
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
 }
 
 export function Thesis({
-  heading, headingAccent, bodyTop, bodyBottom,
-}: { heading: string; headingAccent: string; bodyTop: string; bodyBottom: string }) {
-  const { prefix, pivot } = splitPivot(bodyTop);
-  const smallSize = "clamp(20px, 1.6vw, 24px)";
-  const largeSize = "clamp(22px, 1.85vw, 26px)";
-  return (
-    <section className="bg-ink text-bone py-[clamp(96px,12vh,160px)] px-[clamp(24px,4vw,56px)]">
-      <div className="max-w-wide mx-auto">
-        <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-purple-300 mb-12">§ Why A+R exists</div>
+  heading, headingAccent, bodyTop, pivot, rebuttals,
+}: {
+  heading: string;
+  headingAccent: string;
+  bodyTop: string;
+  pivot?: string;
+  rebuttals?: Rebuttal[];
+}) {
+  const paras = paragraphs(bodyTop);
+  const list = (rebuttals ?? []).filter((r) => r?.lead || r?.tail);
 
+  return (
+    <section
+      className="bg-ink text-bone text-center"
+      style={{ padding: "104px clamp(24px,4vw,56px) 112px" }}
+    >
+      <div className="mx-auto text-center" style={{ maxWidth: 920 }}>
+        {/* Kicker */}
+        <div
+          className="font-mono uppercase text-purple-300"
+          style={{ fontSize: 11, letterSpacing: "0.22em", marginBottom: 36 }}
+        >
+          § Why A+R exists
+        </div>
+
+        {/* Headline — two stacked lines */}
         <h2
-          className="m-0 text-bone text-balance max-w-[16ch]"
+          className="m-0 text-bone"
           style={{
             fontFamily: '"Instrument Serif", serif',
-            fontSize: "clamp(64px, 10vw, 168px)",
-            lineHeight: 0.95,
-            letterSpacing: "-0.028em",
             fontWeight: 400,
-            whiteSpace: "pre-line",
+            fontSize: "clamp(48px, 6.4vw, 96px)",
+            lineHeight: 0.96,
+            letterSpacing: "-0.026em",
           }}
         >
-          {heading}
-          <br />
-          <span className="italic text-purple-300">{headingAccent}</span>
+          <div className="lg:whitespace-nowrap">{heading}</div>
+          <div className="italic text-purple-300 lg:whitespace-nowrap">{headingAccent}</div>
         </h2>
 
-        {/* Body extends to the container midpoint (~720px in a 1440px wrap). */}
-        <div className="mt-[clamp(72px,10vh,128px)] max-w-[720px]">
-          {prefix && (
-            <p
-              className="m-0 text-bone/85"
-              style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: smallSize, lineHeight: 1.55, whiteSpace: "pre-line" }}
-            >
-              {prefix}
-            </p>
-          )}
-          {pivot && (
-            <p
-              className={prefix ? "mt-7 m-0 text-bone" : "m-0 text-bone"}
-              style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: largeSize, lineHeight: 1.5, fontWeight: 600, whiteSpace: "pre-line" }}
+        {/* Indictment */}
+        {paras.length > 0 && (
+          <div
+            style={{
+              marginTop: 64,
+              fontFamily: '"Newsreader", Georgia, serif',
+              fontSize: 20,
+              lineHeight: 1.5,
+              color: "rgba(253,252,248,0.82)",
+            }}
+          >
+            {paras.map((p, i) => (
+              <p key={i} className="mx-auto" style={{ maxWidth: 640, margin: i === 0 ? "0 auto" : "14px auto 0" }}>
+                {p}
+              </p>
+            ))}
+          </div>
+        )}
+
+        {/* Pivot */}
+        {pivot && (
+          <div style={{ marginTop: 56, marginBottom: 40, paddingTop: 32, borderTop: "1px solid #B3A6DC" }}>
+            <div
+              className="italic text-purple-300 lg:whitespace-nowrap"
+              style={{
+                fontFamily: '"Instrument Serif", serif',
+                fontSize: "clamp(22px, 2.6vw, 34px)",
+                lineHeight: 1.12,
+                letterSpacing: "-0.018em",
+              }}
             >
               {pivot}
-            </p>
-          )}
-          <p
-            className="mt-7 m-0 text-bone"
-            style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: largeSize, lineHeight: 1.55, whiteSpace: "pre-line" }}
-          >
-            {bodyBottom}
-          </p>
-        </div>
+            </div>
+          </div>
+        )}
+
+        {/* Rebuttal */}
+        {list.length > 0 && (
+          <div>
+            {list.map((r, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "22px 0",
+                  borderTop: "1px solid rgba(253,252,248,0.12)",
+                }}
+              >
+                {r.lead && (
+                  <div
+                    className="text-bone"
+                    style={{
+                      fontFamily: '"Instrument Serif", serif',
+                      fontSize: "clamp(22px, 2.4vw, 30px)",
+                      lineHeight: 1.18,
+                      letterSpacing: "-0.014em",
+                      marginBottom: 6,
+                    }}
+                  >
+                    {r.lead}
+                  </div>
+                )}
+                {r.tail && (
+                  <div
+                    style={{
+                      fontFamily: '"Newsreader", Georgia, serif',
+                      fontSize: 17,
+                      lineHeight: 1.5,
+                      color: "rgba(253,252,248,0.72)",
+                    }}
+                  >
+                    {r.tail}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

@@ -12,6 +12,7 @@ import {
   getHomepage, getSettings, getFeaturedCases,
   getFounders, getClientLogos, getArticleArchive,
 } from "@/lib/data";
+import { fallbackHomepage } from "@/lib/site";
 type ForthcomingShape = { number?: string; title: string; tag?: string; readTime?: string; slug?: string };
 
 export default async function HomePage() {
@@ -36,7 +37,12 @@ export default async function HomePage() {
         heading={homepage.thesisHeading}
         headingAccent={homepage.thesisHeadingAccent}
         bodyTop={homepage.thesisBodyTop}
-        bodyBottom={homepage.thesisBodyBottom}
+        pivot={(homepage as { thesisPivot?: string }).thesisPivot || fallbackHomepage.thesisPivot}
+        rebuttals={
+          ((homepage as { thesisRebuttals?: Array<{ lead: string; tail: string }> }).thesisRebuttals?.length
+            ? (homepage as { thesisRebuttals: Array<{ lead: string; tail: string }> }).thesisRebuttals
+            : fallbackHomepage.thesisRebuttals)
+        }
       />
       <CarouselFeature
         thesis={homepage.carouselThesis}

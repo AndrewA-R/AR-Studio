@@ -28,8 +28,39 @@ export const homepage = defineType({
     // 2. Why A+R exists
     defineField({ name: "thesisHeading",       title: "Heading",                       type: "text",   rows: 4, fieldset: "thesis" }),
     defineField({ name: "thesisHeadingAccent", title: "Heading — italic accent clause", type: "string", fieldset: "thesis" }),
-    defineField({ name: "thesisBodyTop",       title: "First paragraph (left column)",  type: "text",   rows: 5, fieldset: "thesis" }),
-    defineField({ name: "thesisBodyBottom",    title: "Second paragraph (left column)", type: "text",   rows: 5, fieldset: "thesis" }),
+    defineField({
+      name: "thesisBodyTop",
+      title: "Indictment paragraphs",
+      description: "The two paragraphs of indictment prose that follow the headline. Separate paragraphs with a blank line.",
+      type: "text", rows: 8, fieldset: "thesis",
+    }),
+    defineField({
+      name: "thesisPivot",
+      title: "Pivot line",
+      description: "Single italic line above the rebuttals. e.g. 'A+R was built as a counter-argument to all of this.'",
+      type: "text", rows: 2, fieldset: "thesis",
+    }),
+    defineField({
+      name: "thesisRebuttals",
+      title: "Rebuttal rows",
+      description: "Each row has a serif lead + a smaller tail. Recommend 4 rows.",
+      type: "array", fieldset: "thesis",
+      of: [{
+        type: "object",
+        fields: [
+          { name: "lead", type: "string", title: "Lead (serif, bold visual weight)" },
+          { name: "tail", type: "string", title: "Tail (smaller body line)" },
+        ],
+        preview: { select: { title: "lead", subtitle: "tail" } },
+      }],
+      validation: r => r.max(8),
+    }),
+    defineField({
+      name: "thesisBodyBottom",
+      title: "Second paragraph (currently unused)",
+      description: "Not rendered on the live site since the section was redesigned. Held here in case you want it back. Use 'Rebuttal rows' above instead.",
+      type: "text", rows: 5, fieldset: "thesis",
+    }),
     defineField({
       name: "fractures",
       title: "The fractures (currently unused)",
