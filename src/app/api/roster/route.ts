@@ -2,27 +2,50 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-// Roster signups feed an existing Google Sheet via a small Apps Script Web App.
+// Roster signups feed the existing "Site Freelancer Roster" Google Sheet
+// via a small Apps Script Web App. The script reads the header row and
+// places each form field in the column whose header matches — so renaming
+// or reordering columns in the sheet won't break it. Manual columns
+// (Discipline, Rating, US Based, etc.) are left blank for triage.
 //
 // === SETUP (one-time, by the sheet owner) ===
 //
-// 1. Open the destination Google Sheet.
+// 1. Open the "Site Freelancer Roster" Google Sheet.
 // 2. Extensions → Apps Script (a new tab opens).
 // 3. Replace the contents of Code.gs with:
 //
-//    const SHEET_NAME = "Roster"; // change to whatever tab you want rows on
-//    const HEADERS = ["timestamp","firstName","lastName","expertise","email","linkedin","portfolio","message"];
+//    const SHEET_NAME = "Roster";
 //
 //    function doPost(e) {
 //      const body = JSON.parse(e.postData.contents);
 //      const ss = SpreadsheetApp.getActiveSpreadsheet();
-//      let sheet = ss.getSheetByName(SHEET_NAME);
-//      if (!sheet) sheet = ss.insertSheet(SHEET_NAME);
-//      // Ensure header row exists
-//      if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
-//      const row = HEADERS.map(h => h === "timestamp" ? new Date() : (body[h] || ""));
+//      const sheet = ss.getSheetByName(SHEET_NAME) || ss.getActiveSheet();
+//      const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+//
+//      const fullName = [body.firstName, body.lastName].filter(Boolean).join(" ").trim();
+//      // Header text → value. Header text must match the sheet exactly
+//      // (case-insensitive). Headers without a mapping stay blank for
+//      // manual triage (Discipline, Rating, US Based, etc).
+//      const map = {
+//        "Name":              fullName,
+//        "Area of Expertise": body.expertise || "",
+//        "Email":             body.email     || "",
+//        "LinkedIn Profile":  body.linkedin  || "",
+//        "Portfolio Site":    body.portfolio || "",
+//        "Submitted On":      new Date(),
+//        "Message":           body.message   || "",
+//      };
+//
+//      const lookup = {};
+//      Object.keys(map).forEach(k => { lookup[k.toLowerCase()] = map[k]; });
+//      const row = headers.map(h => {
+//        const v = lookup[String(h || "").trim().toLowerCase()];
+//        return v === undefined ? "" : v;
+//      });
 //      sheet.appendRow(row);
-//      return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
+//      return ContentService
+//        .createTextOutput(JSON.stringify({ ok: true }))
+//        .setMimeType(ContentService.MimeType.JSON);
 //    }
 //
 // 4. Click Deploy → New deployment → choose type "Web app".
