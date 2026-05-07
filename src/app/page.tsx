@@ -32,14 +32,6 @@ export default async function HomePage() {
         headline: c.headline, result: c.result,
         heroImage: c.heroImage, clientLogo: c.clientLogo, logoIsWhite: c.logoIsWhite,
       }))} />
-      <CarouselFeature
-        thesis={homepage.carouselThesis}
-        thesisAccent={homepage.carouselThesisAccent}
-        bodyTop={homepage.carouselBodyTop}
-        bodyBottom={homepage.carouselBodyBottom}
-        closingQuote={homepage.carouselClosingQuote}
-        kickerRight={homepage.carouselKickerRight || "An AI-Powered Marketing Operating System\nbuilt by A+R."}
-      />
       <Thesis
         heading={homepage.thesisHeading}
         headingAccent={homepage.thesisHeadingAccent}
@@ -52,6 +44,14 @@ export default async function HomePage() {
         headlineAccent={homepage.rosterHeadlineAccent}
         copy={homepage.rosterCopy}
         logos={logos}
+      />
+      <CarouselFeature
+        thesis={homepage.carouselThesis}
+        thesisAccent={homepage.carouselThesisAccent}
+        bodyTop={homepage.carouselBodyTop}
+        bodyBottom={homepage.carouselBodyBottom}
+        closingQuote={homepage.carouselClosingQuote}
+        kickerRight={homepage.carouselKickerRight || "An AI-Powered Marketing Operating System\nbuilt by A+R."}
       />
       <Founders
         headline={homepage.foundersHeadline}

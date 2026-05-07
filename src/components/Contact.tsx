@@ -1,9 +1,9 @@
 import Link from "next/link";
+import { NewsletterForm } from "./NewsletterForm";
 
-const pathways = [
+const linkPathways = [
   { tag: "For prospective clients", t: "Schedule an intro call", sub: "A 30-minute conversation about what you’re working on.", href: "/contact" },
   { tag: "For senior specialists", t: "Join the roster", sub: "Strategists, creatives, performance leads, producers.", href: "/join-our-roster" },
-  { tag: "For everyone else", t: "Subscribe to the dispatch", sub: "Andrew’s monthly essay, plus what we’re reading.", href: "/thinking" },
 ];
 
 export function Contact() {
@@ -38,7 +38,7 @@ export function Contact() {
         </div>
 
         <div className="mt-20 pt-8 border-t border-ink/10 grid grid-cols-1 md:grid-cols-3 gap-x-14 gap-y-8">
-          {pathways.map((p) => (
+          {linkPathways.map((p) => (
             <Link key={p.t} href={p.href} className="no-underline text-inherit flex flex-col gap-2 group">
               <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-purple-700">{p.tag}</span>
               <span className="text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 28, lineHeight: 1.1 }}>{p.t}</span>
@@ -46,6 +46,12 @@ export function Contact() {
               <span className="mt-1.5 self-start font-ui text-[13px] font-medium text-purple-700 border-b border-purple-700 pb-0.5">Continue →</span>
             </Link>
           ))}
+          <div className="flex flex-col gap-2">
+            <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-purple-700">For everyone else</span>
+            <span className="text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 28, lineHeight: 1.1 }}>Subscribe to the dispatch</span>
+            <span className="text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 15, lineHeight: 1.5 }}>Andrew’s monthly essay, plus what we’re reading.</span>
+            <NewsletterForm variant="card" className="mt-2" />
+          </div>
         </div>
       </div>
     </section>
