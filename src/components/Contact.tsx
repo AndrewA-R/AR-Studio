@@ -48,8 +48,8 @@ export function Contact() {
           ))}
           <div className="flex flex-col gap-2">
             <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-purple-700">For everyone else</span>
-            <span className="text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 28, lineHeight: 1.1 }}>Subscribe to the dispatch</span>
-            <span className="text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 15, lineHeight: 1.5 }}>Andrew’s monthly essay, plus what we’re reading.</span>
+            <span className="text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 28, lineHeight: 1.1 }}>Subscribe to ‘Notes from the Fold’</span>
+            <span className="text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 15, lineHeight: 1.5 }}>A+R’s monthly dispatch about what we’re thinking, seeing, and being inspired by.</span>
             <NewsletterForm variant="card" className="mt-2" />
           </div>
         </div>
