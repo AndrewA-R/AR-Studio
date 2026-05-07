@@ -31,7 +31,7 @@ export default function CaseMasthead({
         <div style={{padding: '64px 0 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'end'}}>
           <div>
             {logo
-              ? <img src={logo} alt={wordmark} style={{height: 36, filter: 'brightness(0)', opacity: 0.85, marginBottom: 28}} />
+              ? <img src={logo} alt={wordmark} style={{height: 72, filter: 'brightness(0)', opacity: 0.85, marginBottom: 28}} />
               : <div style={{fontFamily: 'JetBrains Mono, monospace', fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: AR_INK, marginBottom: 28}}>{wordmark}</div>}
             <h1 style={{fontFamily: '"Instrument Serif", serif', fontWeight: 400, fontSize: 'clamp(56px,8vw,128px)', lineHeight: 0.95, letterSpacing: '-0.028em', margin: 0, color: AR_INK}}>
               {headline}
