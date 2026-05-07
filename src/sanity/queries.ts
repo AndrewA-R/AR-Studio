@@ -1,9 +1,6 @@
 import { groq } from "next-sanity";
 
-export const homepageQuery = groq`*[_type == "homepage"][0]{
-  ...,
-  forthcomingArticle->{title, "slug": slug.current, number, tag, readTime, publishedAt, status}
-}`;
+export const homepageQuery = groq`*[_type == "homepage"][0]`;
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]`;
 

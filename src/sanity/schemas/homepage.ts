@@ -33,6 +33,21 @@ export const homepage = defineType({
     defineField({ name: "foundersHeadline", title: "Founders headline", type: "text", rows: 3 }),
     defineField({ name: "foundersHeadlineAccent", title: "Founders headline — italic accent", type: "string" }),
     defineField({ name: "foundersCopy", title: "Founders intro copy", type: "text", rows: 5 }),
-    defineField({ name: "forthcomingArticle", title: "Forthcoming article (linked)", type: "reference", to: [{ type: "article" }] }),
+    defineField({
+      name: "forthcomingArticle",
+      title: "Forthcoming article (preview card)",
+      description: "Standalone teaser shown above the archive on /thinking. Fill in to show the card; clear all fields to hide it. No link to a real Article doc — just metadata.",
+      type: "object",
+      fields: [
+        { name: "title", title: "Title", type: "string" },
+        { name: "number", title: "Essay number (e.g. 04)", type: "string" },
+        { name: "tag", title: "Category tag", type: "string",
+          options: { list: ["Strategy", "Operations", "Industry", "Manifesto", "Craft"] } },
+        { name: "readTime", title: "Read time / release line",
+          description: "e.g. \"publishes May 2026\" or \"8 min\"",
+          type: "string" },
+      ],
+      options: { collapsible: true, collapsed: false },
+    }),
   ],
 });
