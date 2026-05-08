@@ -17,10 +17,6 @@ export default async function ContactPage() {
         <div className="max-w-content mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
           <aside className="space-y-6">
             <div>
-              <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Direct</div>
-              <a href="mailto:andrew@a-r.studio" className="block mt-2 text-ink border-b border-ink pb-1 no-underline w-fit">andrew@a-r.studio</a>
-            </div>
-            <div>
               <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Studio</div>
               <div className="mt-2 text-ink-600">Los Angeles</div>
             </div>
