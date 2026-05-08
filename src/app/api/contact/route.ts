@@ -4,7 +4,8 @@ import { Resend } from "resend";
 export const runtime = "nodejs";
 
 type Body = {
-  name?: string; email?: string; company?: string; role?: string;
+  name?: string; firstName?: string; lastName?: string;
+  email?: string; company?: string; role?: string;
   subject?: string; message?: string; kind?: "general" | "roster";
   // Honeypot — bots fill this; humans don't see it.
   website?: string;
@@ -16,7 +17,10 @@ export async function POST(req: NextRequest) {
   catch { return NextResponse.json({ error: "Invalid JSON" }, { status: 400 }); }
 
   if (body.website) return NextResponse.json({ ok: true }); // silently drop bots
-  if (!body.email || !body.name) return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
+
+  // Accept either `name` (legacy) or firstName/lastName (current form).
+  const name = (body.name?.trim()) || [body.firstName, body.lastName].filter(Boolean).join(" ").trim();
+  if (!body.email || !name) return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) return NextResponse.json({ error: "Email looks invalid" }, { status: 400 });
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -31,9 +35,9 @@ export async function POST(req: NextRequest) {
   }
 
   const resend = new Resend(apiKey);
-  const subject = `[a-r.studio] ${body.kind === "roster" ? "Roster" : "Inquiry"} — ${body.name}`;
+  const subject = `[a-r.studio] ${body.kind === "roster" ? "Roster" : "Inquiry"} — ${name}`;
   const lines = [
-    `Name: ${body.name}`,
+    `Name: ${name}`,
     `Email: ${body.email}`,
     body.company && `Company: ${body.company}`,
     body.role && `Role: ${body.role}`,
