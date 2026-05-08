@@ -117,48 +117,31 @@ export async function POST(req: NextRequest) {
   };
 
   try {
-    // Apps Script /exec returns a 302 to script.googleusercontent.com.
-    // Node's fetch converts POST→GET on 302, which drops our body and the
-    // doPost never runs (but the GET still returns 200, masquerading as
-    // success). Handle the redirect ourselves so we can keep POSTing.
-    const body1 = JSON.stringify(payload);
-    const res1 = await fetch(sheetUrl, {
+    // Apps Script /exec processes the POST (running doPost) and replies
+    // with a 302 to script.googleusercontent.com where the response body
+    // is served. The body POST is consumed by doPost; following the 302
+    // with a GET fetches the response. text/plain avoids preflight; Apps
+    // Script still receives the raw body via e.postData.contents.
+    const res = await fetch(sheetUrl, {
       method: "POST",
-      // text/plain avoids any preflight surprise and Apps Script still
-      // gets the raw body via e.postData.contents.
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: body1,
-      redirect: "manual",
+      body: JSON.stringify(payload),
+      redirect: "follow",
     });
-
-    let finalRes = res1;
-    if (res1.status >= 300 && res1.status < 400) {
-      const location = res1.headers.get("location");
-      if (!location) {
-        console.error("[roster] redirect without Location header");
-        return NextResponse.json({ error: "Sheet write failed (redirect)." }, { status: 502 });
-      }
-      finalRes = await fetch(location, {
-        method: "POST",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: body1,
-        redirect: "follow",
-      });
-    }
-
-    const text = await finalRes.text().catch(() => "");
-    if (!finalRes.ok) {
-      console.error("[roster] Apps Script returned", finalRes.status, text.slice(0, 400));
+    const text = await res.text().catch(() => "");
+    if (!res.ok) {
+      console.error("[roster] Apps Script returned", res.status, text.slice(0, 400));
       return NextResponse.json({ error: "Sheet write failed. Try again or email us." }, { status: 502 });
     }
-
-    // Apps Script doPost should return JSON {ok:true}. If we got HTML
-    // (login page, error page) the script didn't actually run.
+    // doPost should return JSON {ok:true}. HTML response = deployment broken.
     let ok = false;
     try { ok = !!JSON.parse(text)?.ok; } catch {}
     if (!ok) {
-      console.error("[roster] Unexpected response (not {ok:true}):", text.slice(0, 400));
-      return NextResponse.json({ error: "Sheet didn't accept the row. Check Apps Script deployment." }, { status: 502 });
+      console.error("[roster] Apps Script didn't return {ok:true}. Body preview:", text.slice(0, 400));
+      return NextResponse.json(
+        { error: "Sheet didn't accept the row. Check Apps Script deployment (Execute as: Me · Who has access: Anyone)." },
+        { status: 502 },
+      );
     }
     return NextResponse.json({ ok: true });
   } catch (err) {
