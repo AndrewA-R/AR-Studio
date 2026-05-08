@@ -89,9 +89,13 @@ export async function POST(req: NextRequest) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email!)) {
     return NextResponse.json({ error: "Email looks invalid" }, { status: 400 });
   }
-  if (!/^https?:\/\//i.test(body.linkedin!)) {
-    return NextResponse.json({ error: "LinkedIn must be a full URL (https://…)" }, { status: 400 });
+  // Normalize LinkedIn: accept "linkedin.com/in/foo", "www.linkedin.com/in/foo",
+  // or full URL. Just check it mentions linkedin, then prepend https:// if missing.
+  const linkedin = (body.linkedin || "").trim();
+  if (!/linkedin\.com/i.test(linkedin)) {
+    return NextResponse.json({ error: "LinkedIn URL doesn't look right" }, { status: 400 });
   }
+  const linkedinNormalized = /^https?:\/\//i.test(linkedin) ? linkedin : `https://${linkedin.replace(/^\/+/, "")}`;
 
   const sheetUrl = process.env.GOOGLE_SHEET_ROSTER_URL;
   if (!sheetUrl) {
@@ -107,23 +111,54 @@ export async function POST(req: NextRequest) {
     lastName:  (body.lastName  || "").trim(),
     expertise: (body.expertise || "").trim(),
     email:     (body.email     || "").trim(),
-    linkedin:  (body.linkedin  || "").trim(),
+    linkedin:  linkedinNormalized,
     portfolio: (body.portfolio || "").trim(),
     message:   (body.message   || "").trim(),
   };
 
   try {
-    const res = await fetch(sheetUrl, {
+    // Apps Script /exec returns a 302 to script.googleusercontent.com.
+    // Node's fetch converts POST→GET on 302, which drops our body and the
+    // doPost never runs (but the GET still returns 200, masquerading as
+    // success). Handle the redirect ourselves so we can keep POSTing.
+    const body1 = JSON.stringify(payload);
+    const res1 = await fetch(sheetUrl, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-      // Apps Script web apps redirect once; fetch follows by default.
-      redirect: "follow",
+      // text/plain avoids any preflight surprise and Apps Script still
+      // gets the raw body via e.postData.contents.
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: body1,
+      redirect: "manual",
     });
-    if (!res.ok) {
-      const txt = await res.text().catch(() => "");
-      console.error("[roster] Apps Script returned", res.status, txt);
+
+    let finalRes = res1;
+    if (res1.status >= 300 && res1.status < 400) {
+      const location = res1.headers.get("location");
+      if (!location) {
+        console.error("[roster] redirect without Location header");
+        return NextResponse.json({ error: "Sheet write failed (redirect)." }, { status: 502 });
+      }
+      finalRes = await fetch(location, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: body1,
+        redirect: "follow",
+      });
+    }
+
+    const text = await finalRes.text().catch(() => "");
+    if (!finalRes.ok) {
+      console.error("[roster] Apps Script returned", finalRes.status, text.slice(0, 400));
       return NextResponse.json({ error: "Sheet write failed. Try again or email us." }, { status: 502 });
+    }
+
+    // Apps Script doPost should return JSON {ok:true}. If we got HTML
+    // (login page, error page) the script didn't actually run.
+    let ok = false;
+    try { ok = !!JSON.parse(text)?.ok; } catch {}
+    if (!ok) {
+      console.error("[roster] Unexpected response (not {ok:true}):", text.slice(0, 400));
+      return NextResponse.json({ error: "Sheet didn't accept the row. Check Apps Script deployment." }, { status: 502 });
     }
     return NextResponse.json({ ok: true });
   } catch (err) {

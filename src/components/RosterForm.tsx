@@ -53,8 +53,8 @@ export function RosterForm() {
 
       <Field label="Area of Expertise" name="expertise" required hint="e.g. Performance media · Brand strategy · Production" />
       <Field label="Email"             name="email"     type="email" required />
-      <Field label="LinkedIn Profile"  name="linkedin"  type="url" required placeholder="https://" />
-      <Field label="Portfolio Site"    name="portfolio" type="url" hint="If applicable" placeholder="https://" />
+      <Field label="LinkedIn Profile"  name="linkedin"  type="text" required placeholder="linkedin.com/in/your-handle" />
+      <Field label="Portfolio Site"    name="portfolio" type="text" hint="If applicable" placeholder="yourstudio.com" />
       <Field label="Message"           name="message"   textarea />
 
       <div className="flex items-center gap-6 pt-2">
