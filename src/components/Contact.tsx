@@ -28,7 +28,7 @@ export function Contact() {
           </h2>
           <div>
             <p className="m-0 max-w-[42ch] text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.55 }}>
-              Most engagements start with a single conversation — what you’re trying to do, what’s in your way, whether we’re a fit. No brief. No RFP. If we’re not the right team, we’ll point you at one that is.
+              Let’s chat! (no pressure)
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link href="/contact" className="btn-primary text-sm px-[22px] py-3.5">Start a conversation →</Link>
