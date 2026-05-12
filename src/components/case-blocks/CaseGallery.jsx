@@ -212,13 +212,45 @@ function GalleryGrid({items = [], dark}) {
   );
 }
 
-export default function CaseGallery({n = '05', kicker = 'Executions', title, lede, items, chapters, dark = false}) {
+export default function CaseGallery({n = '05', kicker = 'Executions', title, lede, items, chapters, introCallout, dark = false}) {
   const bg = dark ? AR_INK : AR_PAPER;
   const fg = dark ? AR_WHITE : AR_INK;
+  const calloutLabel = introCallout?.label;
+  const calloutBody = introCallout?.body;
   return (
     <section className="py-8 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: bg, color: fg}}>
       <div style={{maxWidth: 1440, margin: '0 auto'}}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} lede={lede} dark={dark} />
+        {(calloutLabel || calloutBody) && (
+          <div className="mt-6 md:mt-8 mb-8 md:mb-12 pl-4 md:pl-5" style={{
+            borderLeft: `2px solid ${dark ? AR_PURPLE_300 : AR_PURPLE}`,
+            maxWidth: '64ch',
+          }}>
+            {calloutLabel && (
+              <div style={{
+                fontFamily: 'JetBrains Mono, monospace',
+                fontSize: 11,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: dark ? AR_PURPLE_300 : AR_PURPLE,
+                marginBottom: 10,
+              }}>{calloutLabel}</div>
+            )}
+            {calloutBody && (
+              <p style={{
+                fontFamily: '"Instrument Serif", serif',
+                fontStyle: 'italic',
+                fontWeight: 400,
+                fontSize: 'clamp(20px, 2.4vw, 26px)',
+                lineHeight: 1.35,
+                letterSpacing: '-0.01em',
+                margin: 0,
+                color: fg,
+                whiteSpace: 'pre-line',
+              }}>{calloutBody}</p>
+            )}
+          </div>
+        )}
         {chapters && chapters.length
           ? chapters.map((c, ci) => {
               const showChapterNumber = chapters.length > 1;

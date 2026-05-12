@@ -37,6 +37,17 @@ export default defineType({
     defineField({name: 'lede',   title: 'Lede',   type: 'text', rows: 3}),
 
     defineField({
+      name: 'introCallout',
+      title: 'Intro callout',
+      type: 'object',
+      description: 'Optional callout shown between the section header and the gallery chapters/items.',
+      fields: [
+        {name: 'label', title: 'Label (kicker)', type: 'string', description: 'e.g. "Phase 02 — in flight, April 2026"'},
+        {name: 'body',  title: 'Body',           type: 'text', rows: 3},
+      ],
+    }),
+
+    defineField({
       name: 'items', title: 'Items (flat)', type: 'array',
       description: 'Use for a single-chapter gallery. Leave blank if using Chapters below.',
       of: [{
