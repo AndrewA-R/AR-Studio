@@ -18,6 +18,7 @@ export const homepage = defineType({
     { name: "founders",  title: "4. The studio",            options: { collapsible: true, collapsed: true } },
     { name: "roster",    title: "5. Brands we've worked with", options: { collapsible: true, collapsed: true } },
     { name: "thinking",  title: "6. Thinking (forthcoming card)", options: { collapsible: true, collapsed: true } },
+    { name: "seo",       title: "7. SEO & Social (link previews)", options: { collapsible: true, collapsed: true } },
   ],
   fields: [
     // 1. Hero
@@ -112,5 +113,13 @@ export const homepage = defineType({
       ],
       options: { collapsible: true, collapsed: false },
     }),
+
+    // 7. SEO — overrides for the homepage link preview
+    defineField({ name: "seoTitle", title: "SEO title", type: "string", fieldset: "seo",
+      description: "Overrides the default site SEO title for the homepage's <title> + social card title." }),
+    defineField({ name: "seoDescription", title: "SEO description", type: "text", rows: 2, fieldset: "seo",
+      description: "Overrides the default site description for the homepage's meta + social card description." }),
+    defineField({ name: "ogImage", title: "OG image", type: "image", fieldset: "seo",
+      description: "1200×630. Overrides the default site OG image for shares of the homepage URL." }),
   ],
 });

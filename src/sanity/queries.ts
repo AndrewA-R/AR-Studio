@@ -1,10 +1,16 @@
 import { groq } from "next-sanity";
 
-export const homepageQuery = groq`*[_type == "homepage"][0]`;
+export const homepageQuery = groq`*[_type == "homepage"][0]{
+  ...,
+  "ogImageUrl": ogImage.asset->url
+}`;
 
 export const carouselPageQuery = groq`*[_type == "carouselPage"][0]`;
 
-export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]`;
+export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
+  ...,
+  "ogImageUrl": ogImage.asset->url
+}`;
 
 // Tile-shape fields for the homepage Work section. We pull the new
 // schema's masthead fields and alias them to the tile component's
@@ -43,6 +49,7 @@ export const caseBySlugQuery = groq`*[_type == "caseStudy" && slug.current == $s
   "heroImageUrl": heroImage.asset->url,
   "heroVideoUrl": heroVideo.asset->url,
   "heroVideoType": heroVideo.asset->mimeType,
+  "ogImageUrl": ogImage.asset->url,
   body[]{
     ...,
     _type == "galleryBlock" => {
@@ -92,6 +99,7 @@ export const articleArchiveQuery = groq`*[_type == "article" && status != "forth
 
 export const articleBySlugQuery = groq`*[_type == "article" && slug.current == $slug][0]{
   ..., "slug": slug.current,
+  "ogImageUrl": ogImage.asset->url,
   body[]{
     ...,
     _type == "image" => { ..., "url": asset->url }

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import { PageShell } from "@/components/PageShell";
 import { getArticleBySlug } from "@/lib/data";
+import { buildMetadata } from "@/lib/seo";
 
 const portableTextComponents: PortableTextComponents = {
   types: {
@@ -45,8 +46,15 @@ type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const a = await getArticleBySlug(slug) as { title?: string; excerpt?: string } | null;
-  return { title: a?.title || "Essay", description: a?.excerpt };
+  const a = await getArticleBySlug(slug) as {
+    title?: string; excerpt?: string;
+    seoTitle?: string; seoDescription?: string; ogImageUrl?: string;
+  } | null;
+  return buildMetadata({
+    title: a?.seoTitle || a?.title,
+    description: a?.seoDescription || a?.excerpt,
+    image: a?.ogImageUrl,
+  });
 }
 
 function Byline({ author, publishedAt }: { author?: string; publishedAt?: string }) {

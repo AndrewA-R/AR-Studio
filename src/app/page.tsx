@@ -13,7 +13,20 @@ import {
   getFounders, getClientLogos, getArticleArchive,
 } from "@/lib/data";
 import { fallbackHomepage } from "@/lib/site";
+import { buildMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
 type ForthcomingShape = { number?: string; title: string; tag?: string; readTime?: string; slug?: string };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const homepage = (await getHomepage()) as {
+    seoTitle?: string; seoDescription?: string; ogImageUrl?: string;
+  };
+  return buildMetadata({
+    title: homepage.seoTitle,
+    description: homepage.seoDescription,
+    image: homepage.ogImageUrl,
+  });
+}
 
 export default async function HomePage() {
   const [homepage, settings, cases, founders, logos, archive] = await Promise.all([

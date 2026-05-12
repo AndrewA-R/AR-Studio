@@ -6,6 +6,8 @@ import {
   CaseGallery, CaseQuote, CaseBrandSystem, CaseVideo, CaseCTA,
 } from "@/components/case-blocks";
 import { fallbackCases } from "@/lib/site";
+import { buildMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -19,15 +21,17 @@ type CaseDoc = {
   heroVideoUrl?: string; heroVideoType?: string;
   atGlance?: Array<{ k?: string; v?: string }>;
   body?: AnyBlock[];
+  seoTitle?: string; seoDescription?: string; ogImageUrl?: string;
 };
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const c = (await getCaseBySlug(slug)) as CaseDoc | null;
-  return {
-    title: c?.wordmark ? `${c.wordmark} — Case study` : "Case study",
-    description: c?.lede,
-  };
+  return buildMetadata({
+    title: c?.seoTitle || (c?.wordmark ? `${c.wordmark} — Case study` : undefined),
+    description: c?.seoDescription || c?.lede,
+    image: c?.ogImageUrl || c?.heroImageUrl,
+  });
 }
 
 export default async function CaseStudyPage({ params }: Props) {

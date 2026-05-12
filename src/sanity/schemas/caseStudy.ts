@@ -87,6 +87,14 @@ export const caseStudy = defineType({
       description: "Lower numbers surface first on the work index." }),
     defineField({ name: "featured", title: "Featured on homepage", type: "boolean", group: "meta",
       initialValue: false }),
+
+    // ── SEO / Social link previews ───────────────────────────────────
+    defineField({ name: "seoTitle", title: "SEO title", type: "string", group: "meta",
+      description: "Overrides the default <title> + LinkedIn/Twitter card title for this case. Falls back to '<wordmark> — Case study'." }),
+    defineField({ name: "seoDescription", title: "SEO description", type: "text", rows: 2, group: "meta",
+      description: "Overrides the meta description + social card description. Falls back to the masthead lede." }),
+    defineField({ name: "ogImage", title: "OG image", type: "image", group: "meta",
+      description: "1200×630. Overrides the default site OG image for shares of this case's URL. Falls back to the hero image." }),
   ],
   orderings: [
     { title: "Sort order",  name: "orderAsc",  by: [{ field: "order",  direction: "asc" }] },
