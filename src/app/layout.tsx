@@ -3,7 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { buildMetadata } from "@/lib/seo";
 
-const GA_MEASUREMENT_ID = "G-2LL8WQG3NS";
+const GA_MEASUREMENT_ID = "G-L1CESYXFFR";
 
 export async function generateMetadata(): Promise<Metadata> {
   const base = await buildMetadata();
