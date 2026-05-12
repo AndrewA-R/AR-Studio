@@ -11,9 +11,13 @@
   }
   html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   /* Site-wide zoom — equivalent to "browser zoom out to 80%". Scales every
-     asset, font, and rule proportionally so the page reads tighter without
-     any per-element edits. Does NOT apply inside the embedded Sanity Studio. */
-  body { zoom: 0.8; }
+     asset, font, and rule proportionally so desktop reads tighter without
+     any per-element edits. Scoped to ≥ md so mobile renders at native
+     1:1 (zoom on mobile fights responsive sizing and creates overflow).
+     Does NOT apply inside the embedded Sanity Studio. */
+  @media (min-width: 768px) {
+    body { zoom: 0.8; }
+  }
   body {
     background: #F6F3EC;
     color: #111010;

@@ -3,8 +3,9 @@ import Link from "next/link";
 export function Hero({ lede, ledeAccent, body }: { lede: string; ledeAccent: string; body: string }) {
   return (
     <section className="bg-paper">
-      <div className="wrap pt-12 pb-10">
-        <div className="grid grid-cols-[1fr_2px_1fr] items-stretch" style={{ minHeight: "clamp(360px, 48vh, 560px)" }}>
+      <div className="wrap pt-10 md:pt-12 pb-8 md:pb-10">
+        {/* Mobile: stacked with horizontal rule between. md+: side-by-side with vertical rule. */}
+        <div className="hidden md:grid grid-cols-[1fr_2px_1fr] items-stretch" style={{ minHeight: "clamp(360px, 48vh, 560px)" }}>
           <div className="flex flex-col justify-end items-end pr-12 text-right">
             <h1
               className="m-0 text-ink"
@@ -32,6 +33,33 @@ export function Hero({ lede, ledeAccent, body }: { lede: string; ledeAccent: str
               Together.
             </h1>
           </div>
+        </div>
+
+        {/* Mobile stacked variant. Horizontal rule replaces the vertical one. */}
+        <div className="md:hidden flex flex-col">
+          <h1
+            className="m-0 text-ink"
+            style={{
+              fontFamily: '"Instrument Serif", serif',
+              fontSize: "clamp(64px, 18vw, 96px)",
+              lineHeight: 0.9,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Work.
+          </h1>
+          <div className="h-[2px] bg-ink my-5" aria-hidden />
+          <h1
+            className="m-0 text-purple-700 italic text-right"
+            style={{
+              fontFamily: '"Instrument Serif", serif',
+              fontSize: "clamp(64px, 18vw, 96px)",
+              lineHeight: 0.9,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Together.
+          </h1>
         </div>
 
         <div className="mt-8 pt-7 border-t border-ink/10 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-y-7 gap-x-14 items-start">

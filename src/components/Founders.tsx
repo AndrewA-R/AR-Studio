@@ -35,18 +35,18 @@ export function Founders({
           {founders.map((p, i) => (
             <div
               key={p._id}
-              className={`p-10 grid grid-cols-[220px_1fr] gap-8 items-stretch ${i > 0 ? "lg:border-l border-ink/10 border-t lg:border-t-0" : ""}`}
+              className={`p-6 sm:p-10 grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-6 sm:gap-8 items-stretch ${i > 0 ? "lg:border-l border-ink/10 border-t lg:border-t-0" : ""}`}
             >
               <img
                 src={imgSrc(p.headshot, "/placeholders/headshot.jpg", 800)}
                 alt={p.name}
-                className="w-full h-full object-cover"
+                className="w-full h-auto sm:h-full object-cover aspect-[3/4] sm:aspect-auto"
                 style={{ filter: "grayscale(100%)" }}
               />
               <div>
-                <h3 className="m-0 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 28, lineHeight: 1.02, fontWeight: 400 }}>{p.name}</h3>
+                <h3 className="m-0 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(28px, 4.5vw, 36px)", lineHeight: 1.02, fontWeight: 400 }}>{p.name}</h3>
                 <div className="mt-1.5 font-mono text-[11px] tracking-[0.14em] uppercase text-purple-700">{p.role}</div>
-                <p className="mt-4 max-w-[38ch] text-ink-600 italic m-0" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 19, lineHeight: 1.4, whiteSpace: "pre-line" }}>{p.bio}</p>
+                <p className="mt-4 max-w-[38ch] text-ink-600 italic m-0" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(17px, 3.6vw, 19px)", lineHeight: 1.4, whiteSpace: "pre-line" }}>{p.bio}</p>
               </div>
             </div>
           ))}

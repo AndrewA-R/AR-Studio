@@ -62,10 +62,13 @@ export function Thinking({
               href={`/thinking/${a.slug}`}
               className="grid grid-cols-1 md:grid-cols-[80px_1fr_140px_80px_80px] gap-x-8 gap-y-1 py-7 border-b border-ink/10 no-underline text-inherit items-baseline group"
             >
-              <div className="font-mono text-xs text-ink-400 tracking-[0.14em]">No. {a.number || "—"}</div>
+              <div className="font-mono text-xs text-ink-400 tracking-[0.14em] flex items-baseline gap-3">
+                <span>No. {a.number || "—"}</span>
+                {a.readTime && <span className="md:hidden">· {a.readTime}</span>}
+              </div>
               <h3
                 className="m-0 text-ink group-hover:text-purple-700 transition-colors"
-                style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(22px, 2.4vw, 32px)", lineHeight: 1.15, letterSpacing: "-0.018em", fontWeight: 400 }}
+                style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(22px, 5vw, 32px)", lineHeight: 1.15, letterSpacing: "-0.018em", fontWeight: 400 }}
               >
                 {a.title}
               </h3>
