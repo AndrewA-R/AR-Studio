@@ -220,21 +220,24 @@ export default function CaseGallery({n = '05', kicker = 'Executions', title, led
       <div style={{maxWidth: 1440, margin: '0 auto'}}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} lede={lede} dark={dark} />
         {chapters && chapters.length
-          ? chapters.map((c, ci) => (
-              <div key={ci} style={{marginTop: ci === 0 ? 16 : 56}}>
-                <div className="flex flex-wrap items-baseline gap-3 md:gap-4 pb-3 mb-4 border-b" style={{
-                  borderColor: dark ? 'rgba(253,252,248,0.18)' : 'rgba(17,16,16,0.14)',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase',
-                  color: dark ? AR_PURPLE_300 : AR_PURPLE,
-                }}>
-                  <span>Chapter {String(ci + 1).padStart(2, '0')}</span>
-                  <span style={{color: fg, fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontSize: 18, letterSpacing: 0, textTransform: 'none'}}>{c.title}</span>
-                  <span className="md:ml-auto w-full md:w-auto">{c.note}</span>
+          ? chapters.map((c, ci) => {
+              const showChapterNumber = chapters.length > 1;
+              return (
+                <div key={ci} style={{marginTop: ci === 0 ? 16 : 56}}>
+                  <div className="flex flex-wrap items-baseline gap-3 md:gap-4 pb-3 mb-4 border-b" style={{
+                    borderColor: dark ? 'rgba(253,252,248,0.18)' : 'rgba(17,16,16,0.14)',
+                    fontFamily: 'JetBrains Mono, monospace',
+                    fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase',
+                    color: dark ? AR_PURPLE_300 : AR_PURPLE,
+                  }}>
+                    {showChapterNumber && <span>Chapter {String(ci + 1).padStart(2, '0')}</span>}
+                    {c.title && <span style={{color: fg, fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontSize: 18, letterSpacing: 0, textTransform: 'none'}}>{c.title}</span>}
+                    {c.note && <span className="md:ml-auto w-full md:w-auto">{c.note}</span>}
+                  </div>
+                  <GalleryGrid items={c.items} dark={dark} />
                 </div>
-                <GalleryGrid items={c.items} dark={dark} />
-              </div>
-            ))
+              );
+            })
           : <GalleryGrid items={items} dark={dark} />}
       </div>
     </section>
