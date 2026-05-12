@@ -7,7 +7,7 @@ import CaseSectionHeader from './CaseSectionHeader';
 
 export default function CaseDiagnosis({n = '04', kicker = 'Diagnosis', title, paragraphs = [], callout}) {
   return (
-    <section className="py-14 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: AR_PAPER}}>
+    <section className="py-24 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: AR_PAPER}}>
       <div style={{maxWidth: 1440, margin: '0 auto'}}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} />
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8 md:gap-16 items-start">

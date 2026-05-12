@@ -15,7 +15,7 @@ export default function CaseBrandSystem({n = '06', kicker = 'The system', title,
     : (layoutSlots || ['01', '02', '03']).map((id) => ({label: id}));
 
   return (
-    <section className="py-14 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: AR_PAPER}}>
+    <section className="py-24 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: AR_PAPER}}>
       <div style={{maxWidth: 1440, margin: '0 auto'}}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} lede={body} />
         <div className="brand-system-grid mt-6" style={{display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 16}}>
@@ -26,7 +26,7 @@ export default function CaseBrandSystem({n = '06', kicker = 'The system', title,
               : <Placeholder label="L1" caption="Logo / wordmark" />}
           </div>
           {/* Palette swatches */}
-          <div className="bs-cell" style={{gridColumn: 'span 4', aspectRatio: '4/3', display: 'grid', gridTemplateColumns: `repeat(${Math.max(palette.length, 1)}, 1fr)`}}>
+          <div className="bs-cell bs-palette" style={{gridColumn: 'span 4', aspectRatio: '4/3', display: 'grid', gridTemplateColumns: `repeat(${Math.max(palette.length, 1)}, 1fr)`}}>
             {palette.map((c, i) => (
               <div key={i} style={{background: c.hex, position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: 12, color: c.fg || AR_WHITE}}>
                 <div style={{fontFamily: 'JetBrains Mono, monospace', fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', opacity: 0.85}}>{c.name}</div>

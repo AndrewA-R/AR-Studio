@@ -13,7 +13,7 @@ export default function CaseStrategy({n = '03', kicker = 'Strategy', title, body
   const rule = dark ? 'rgba(253,252,248,0.18)' : 'rgba(17,16,16,0.14)';
   const accent = dark ? AR_PURPLE_300 : AR_PURPLE;
   return (
-    <section className="py-14 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: bg, color: fg}}>
+    <section className="py-24 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: bg, color: fg}}>
       <div style={{maxWidth: 1440, margin: '0 auto'}}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} dark={dark} />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start">

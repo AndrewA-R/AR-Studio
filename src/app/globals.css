@@ -59,17 +59,17 @@
   .prose-ar a:hover { color: var(--accent-strong); }
   .prose-ar p { margin: 0 0 16px; }
 
-  /* Mobile override for case-study gallery: stack items full-width, use
-     each item's --gallery-item-ratio for natural height. Above md the
-     inline 12-col bento layout takes over. */
+  /* Mobile override for case-study gallery: 2-up thumbnail grid, each
+     thumbnail keeps its own aspect ratio (matches desktop). Tap opens the
+     lightbox. Above md the inline 12-col bento layout takes over. */
   @media (max-width: 767px) {
     .case-gallery {
-      grid-template-columns: 1fr !important;
+      grid-template-columns: repeat(2, 1fr) !important;
       grid-auto-rows: auto !important;
-      gap: 12px !important;
+      gap: 8px !important;
     }
     .case-gallery > figure {
-      grid-column: 1 / -1 !important;
+      grid-column: span 1 !important;
       grid-row: auto !important;
       aspect-ratio: var(--gallery-item-ratio, 4 / 3);
     }
@@ -79,6 +79,14 @@
     }
     .brand-system-grid > .bs-cell {
       grid-column: 1 / -1 !important;
+    }
+    /* Palette grid inside the brand-system cell can have N inline columns
+       (one per swatch). On mobile that overflows the viewport — cap at 3
+       and let it wrap into a multi-row grid. The cell stays 4:3 ratio. */
+    .brand-system-grid .bs-palette {
+      grid-template-columns: repeat(3, 1fr) !important;
+      grid-auto-rows: 1fr !important;
+      aspect-ratio: auto !important;
     }
   }
 }
