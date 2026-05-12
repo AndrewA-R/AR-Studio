@@ -59,10 +59,10 @@ export function NewsletterForm({ variant = "footer", className = "" }: Props) {
     );
   }
 
-  // footer variant — tight, single-line
+  // footer variant — single-line at sm+, stacked + full-width on mobile.
   return (
     <form onSubmit={onSubmit} className={`flex flex-col gap-2 ${className}`}>
-      <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row gap-2">
         <input
           type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
           placeholder="you@company.com"
@@ -70,7 +70,7 @@ export function NewsletterForm({ variant = "footer", className = "" }: Props) {
           aria-label="Email address"
         />
         <button type="submit" disabled={state === "loading"}
-          className="font-ui text-[13px] font-medium text-bone border border-bone/30 px-3 py-1.5 hover:bg-bone hover:text-purple-950 disabled:opacity-50">
+          className="w-full sm:w-auto font-ui text-[13px] font-medium text-bone border border-bone/30 px-3 py-2 sm:py-1.5 hover:bg-bone hover:text-purple-950 disabled:opacity-50">
           {state === "loading" ? "…" : "Subscribe"}
         </button>
       </div>

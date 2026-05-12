@@ -67,7 +67,7 @@ export function Roster({
             column count only kicks in at lg+; below that we use 3/4 cols
             so logos don't get squashed on phones. */}
         <div
-          className="grid grid-cols-3 sm:grid-cols-4 lg:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))] border-t border-l border-bone/15"
+          className="grid grid-cols-2 sm:grid-cols-4 lg:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))] border-t border-l border-bone/15"
           style={{ ["--cols" as string]: String(topCols) }}
         >
           {top.map((l) => <LogoCell key={l._id} l={l} />)}
