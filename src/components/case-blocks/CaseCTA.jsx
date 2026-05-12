@@ -13,7 +13,7 @@ export default function CaseCTA({headline = 'A similar problem at your', italic 
         </h2>
         <div>
           <div className="text-[17px] md:text-[19px]" style={{fontFamily: '"Newsreader", Georgia, serif', lineHeight: 1.6, color: 'rgba(253,252,248,0.8)', maxWidth: '46ch', whiteSpace: 'pre-line'}}>
-            {body || "Most engagements start with a single conversation. No brief required. If there's a fit, we'll tell you. If there isn't, we'll tell you that too."}
+            {body || "Let’s chat! (no pressure)"}
           </div>
           <a href={href} style={{marginTop: 24, display: 'inline-block', fontFamily: 'Inter, sans-serif', fontSize: 14, fontWeight: 500, padding: '14px 22px', background: AR_WHITE, color: AR_PURPLE_INK, textDecoration: 'none', border: 'none'}}>Start a conversation →</a>
         </div>
