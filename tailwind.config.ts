@@ -1,7 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.{ts,tsx,mdx}"],
+  // Include .jsx/.js — every case-blocks/* component is .jsx and otherwise
+  // Tailwind purges any @layer components rules that target their classes.
+  content: ["./src/**/*.{ts,tsx,js,jsx,mdx}"],
   theme: {
     extend: {
       colors: {
