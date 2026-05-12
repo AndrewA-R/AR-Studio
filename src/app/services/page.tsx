@@ -20,6 +20,12 @@ const tiers = [
   { n: "III", name: "Ownership",  sub: "Campaigns + Departmental Leadership" },
 ];
 
+const ruleBodies: Array<React.ReactNode> = [
+  <>You bring leadership and a marketing team.<br />We bring the plan.</>,
+  <>You bring leadership.<br />We bring the plan and the team to execute it.</>,
+  <>We bring the plan, the team, and leadership of your marketing org.</>,
+];
+
 export default function ServicesPage() {
   return (
     <PageShell>
@@ -102,12 +108,23 @@ export default function ServicesPage() {
                       );
                     })}
                   </ul>
+                  {/* Rule statement for this tier — desktop renders it once in the footer; mobile lives here */}
+                  <div className="mt-6 pt-5 border-t border-ink/10">
+                    <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-purple-700 mb-2.5">Hire us for {t.n}</div>
+                    <p
+                      className="m-0 max-w-[28ch] text-ink"
+                      style={{ fontFamily: '"Instrument Serif", serif', fontStyle: "italic", fontSize: 19, lineHeight: 1.3 }}
+                    >
+                      {ruleBodies[tIdx]}
+                    </p>
+                  </div>
                 </article>
               );
             })}
           </div>
 
-          {/* Legend + rule statements */}
+          {/* Legend + rule statements. Mobile shows the legend only — rule statements
+              live inside each tier card above. Desktop keeps the full 4-col row. */}
           <div
             className="mt-14 pt-6 border-t-2 border-ink grid gap-6 items-baseline grid-cols-1 lg:[grid-template-columns:1.4fr_1fr_1fr_1fr]"
           >
@@ -117,15 +134,17 @@ export default function ServicesPage() {
               <LegendItem swatch="#3D2B82" label="Covered by A+R team" />
               <LegendItem swatch="#B3A6DC" label="Covered by A+R planning" />
             </div>
-            <RuleStatement n="I">
-              You bring leadership and a marketing team.<br />We bring the plan.
-            </RuleStatement>
-            <RuleStatement n="II">
-              You bring leadership.<br />We bring the plan and the team to execute it.
-            </RuleStatement>
-            <RuleStatement n="III">
-              We bring the plan, the team, and leadership of your marketing org.
-            </RuleStatement>
+            <div className="hidden md:contents">
+              <RuleStatement n="I">
+                You bring leadership and a marketing team.<br />We bring the plan.
+              </RuleStatement>
+              <RuleStatement n="II">
+                You bring leadership.<br />We bring the plan and the team to execute it.
+              </RuleStatement>
+              <RuleStatement n="III">
+                We bring the plan, the team, and leadership of your marketing org.
+              </RuleStatement>
+            </div>
           </div>
 
           <div className="mt-16 pt-10 border-t border-ink/10 flex">

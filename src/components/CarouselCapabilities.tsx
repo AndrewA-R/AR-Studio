@@ -20,7 +20,7 @@ export function CarouselCapabilities({ capabilities }: { capabilities: Capabilit
         </div>
         <div className="flex flex-col">
           {capabilities.map((cap, i) => (
-            <CapabilityRow key={cap._id} cap={cap} index={i} isLast={i === capabilities.length - 1} />
+            <CapabilityRow key={cap._id} cap={cap} isLast={i === capabilities.length - 1} />
           ))}
         </div>
       </div>
@@ -28,8 +28,7 @@ export function CarouselCapabilities({ capabilities }: { capabilities: Capabilit
   );
 }
 
-function CapabilityRow({ cap, index, isLast }: { cap: Capability; index: number; isLast: boolean }) {
-  const videoOnRight = index % 2 === 0; // even rows: text left / video right
+function CapabilityRow({ cap, isLast }: { cap: Capability; isLast: boolean }) {
   const posterUrl = cap.poster ? imgSrc(cap.poster, "", 1600) : "";
 
   const text = (
@@ -87,7 +86,8 @@ function CapabilityRow({ cap, index, isLast }: { cap: Capability; index: number;
 
   return (
     <div className={`grid grid-cols-1 lg:grid-cols-2 gap-y-8 gap-x-16 py-16 ${isLast ? "" : "border-b border-ink/15"}`}>
-      {videoOnRight ? <>{text}{media}</> : <>{media}{text}</>}
+      {text}
+      {media}
     </div>
   );
 }
