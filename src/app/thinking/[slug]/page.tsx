@@ -20,19 +20,19 @@ const portableTextComponents: PortableTextComponents = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="mt-14 mb-5 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 56, lineHeight: 1.05, letterSpacing: "-0.02em", fontWeight: 400 }}>{children}</h1>
+      <h1 className="mt-10 mb-4 md:mt-14 md:mb-5 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(34px, 7vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.02em", fontWeight: 400 }}>{children}</h1>
     ),
     h2: ({ children }) => (
-      <h2 className="mt-12 mb-4 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 42, lineHeight: 1.1, letterSpacing: "-0.018em", fontWeight: 400 }}>{children}</h2>
+      <h2 className="mt-9 mb-3 md:mt-12 md:mb-4 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(28px, 5.5vw, 42px)", lineHeight: 1.1, letterSpacing: "-0.018em", fontWeight: 400 }}>{children}</h2>
     ),
     h3: ({ children }) => (
-      <h3 className="mt-10 mb-3 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 30, lineHeight: 1.2, letterSpacing: "-0.014em", fontWeight: 400 }}>{children}</h3>
+      <h3 className="mt-8 mb-3 md:mt-10 text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(22px, 4.4vw, 30px)", lineHeight: 1.2, letterSpacing: "-0.014em", fontWeight: 400 }}>{children}</h3>
     ),
     h4: ({ children }) => (
-      <h4 className="mt-8 mb-2 text-ink font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--accent)" }}>{children}</h4>
+      <h4 className="mt-6 mb-2 md:mt-8 text-ink font-mono text-[11px] tracking-[0.22em] uppercase" style={{ color: "var(--accent)" }}>{children}</h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="my-8 pl-6 border-l-2 border-purple-700 italic text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: 26, lineHeight: 1.35 }}>{children}</blockquote>
+      <blockquote className="my-6 md:my-8 pl-5 md:pl-6 border-l-2 border-purple-700 italic text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(20px, 4vw, 26px)", lineHeight: 1.35 }}>{children}</blockquote>
     ),
   },
   list: {
@@ -94,15 +94,15 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <PageShell>
-      <article className="wrap py-24">
-        <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-purple-700 mb-6">
+      <article className="wrap py-12 md:py-24">
+        <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-purple-700 mb-5 md:mb-6">
           {[`No. ${article.number}`, article.tag, article.readTime].filter(Boolean).join(" · ")}
         </div>
-        <h1 className="m-0 max-w-[24ch] text-ink text-balance" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(48px,7vw,112px)", lineHeight: 0.98, letterSpacing: "-0.025em", fontWeight: 400 }}>
+        <h1 className="m-0 max-w-[24ch] text-ink text-balance" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(36px, 9vw, 112px)", lineHeight: 0.98, letterSpacing: "-0.025em", fontWeight: 400 }}>
           {article.title}
         </h1>
         <Byline author={article.author} publishedAt={article.publishedAt} />
-        <div className="prose-ar mt-12 text-ink-600" style={{ fontFamily: '"Newsreader", Georgia, serif', fontSize: 19, lineHeight: 1.65, maxWidth: 1100 }}>
+        <div className="prose-ar mt-8 md:mt-12 text-ink-600 text-[17px] md:text-[19px]" style={{ fontFamily: '"Newsreader", Georgia, serif', lineHeight: 1.65, maxWidth: 1100 }}>
           {article.body ? <PortableText value={article.body as never} components={portableTextComponents} /> : null}
         </div>
       </article>

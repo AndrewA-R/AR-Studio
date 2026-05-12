@@ -58,4 +58,27 @@
   .prose-ar a { color: var(--accent); border-bottom: 1px solid currentColor; padding-bottom: 1px; text-decoration: none; }
   .prose-ar a:hover { color: var(--accent-strong); }
   .prose-ar p { margin: 0 0 16px; }
+
+  /* Mobile override for case-study gallery: stack items full-width, use
+     each item's --gallery-item-ratio for natural height. Above md the
+     inline 12-col bento layout takes over. */
+  @media (max-width: 767px) {
+    .case-gallery {
+      grid-template-columns: 1fr !important;
+      grid-auto-rows: auto !important;
+      gap: 12px !important;
+    }
+    .case-gallery > figure {
+      grid-column: 1 / -1 !important;
+      grid-row: auto !important;
+      aspect-ratio: var(--gallery-item-ratio, 4 / 3);
+    }
+    /* Brand system grid: stack each cell full-width on mobile. */
+    .brand-system-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .brand-system-grid > .bs-cell {
+      grid-column: 1 / -1 !important;
+    }
+  }
 }

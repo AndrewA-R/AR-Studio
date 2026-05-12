@@ -31,7 +31,7 @@ export function CaseTile(c: CaseTileProps) {
         style={{ backgroundImage: heroUrl ? `url(${heroUrl})` : undefined }}
       >
         <div
-          className="absolute left-6 bottom-6 flex items-center justify-center w-64 h-24 px-6 py-4"
+          className="absolute left-3 bottom-3 sm:left-6 sm:bottom-6 flex items-center justify-center w-40 h-16 sm:w-64 sm:h-24 px-3 py-2 sm:px-6 sm:py-4"
           style={{
             background: "rgba(255,255,255,0.18)",
             backdropFilter: "blur(6px)",
@@ -43,15 +43,15 @@ export function CaseTile(c: CaseTileProps) {
             <img
               src={logoUrl}
               alt={c.client}
-              className="object-contain max-w-[220px] opacity-95"
+              className="object-contain max-w-[140px] sm:max-w-[220px] opacity-95"
               style={{
-                height: c.logoIsWhite ? 118 : 68,
+                height: c.logoIsWhite ? "clamp(44px, 14vw, 118px)" : "clamp(28px, 9vw, 68px)",
                 filter: c.logoIsWhite ? "none" : "brightness(0) invert(1)",
-                marginTop: c.logoIsWhite ? 0 : 6,
+                marginTop: c.logoIsWhite ? 0 : 4,
               }}
             />
           ) : (
-            <span className="text-bone whitespace-nowrap" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: "italic", fontSize: 22, lineHeight: 1, letterSpacing: "-0.01em" }}>
+            <span className="text-bone whitespace-nowrap" style={{ fontFamily: '"Instrument Serif", serif', fontStyle: "italic", fontSize: "clamp(16px, 3.6vw, 22px)", lineHeight: 1, letterSpacing: "-0.01em" }}>
               {c.client}
             </span>
           )}

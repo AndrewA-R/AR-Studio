@@ -43,7 +43,7 @@ function GalleryGrid({items = [], dark}) {
   }
 
   return (
-    <div style={{display: 'grid', gridTemplateColumns: `repeat(${TOTAL_COLS}, 1fr)`, gridAutoRows: `${ROW_UNIT}px`, gap: COL_GUTTER}}>
+    <div className="case-gallery" style={{display: 'grid', gridTemplateColumns: `repeat(${TOTAL_COLS}, 1fr)`, gridAutoRows: `${ROW_UNIT}px`, gap: COL_GUTTER}}>
       {items.map((it, i) => {
         const span = it.span || 4;
         const imgSrc = it.src || it.image?.asset?.url || (typeof it.image === 'string' ? it.image : null);
@@ -54,6 +54,7 @@ function GalleryGrid({items = [], dark}) {
           <figure key={i} style={{
             gridColumn: `span ${span}`,
             gridRow: `span ${rowSpans[i]}`,
+            ['--gallery-item-ratio']: it.ratio || '4/3',
             margin: 0, position: 'relative', overflow: 'hidden',
             background: dark ? AR_PURPLE_INK : AR_WHITE,
             border: `1px solid ${dark ? 'rgba(253,252,248,0.14)' : 'rgba(17,16,16,0.10)'}`,
@@ -82,22 +83,21 @@ export default function CaseGallery({n = '05', kicker = 'Executions', title, led
   const bg = dark ? AR_INK : AR_PAPER;
   const fg = dark ? AR_WHITE : AR_INK;
   return (
-    <section style={{background: bg, color: fg, padding: '88px clamp(24px,4vw,56px)'}}>
+    <section className="py-14 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: bg, color: fg}}>
       <div style={{maxWidth: 1440, margin: '0 auto'}}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} lede={lede} dark={dark} />
         {chapters && chapters.length
           ? chapters.map((c, ci) => (
               <div key={ci} style={{marginTop: ci === 0 ? 16 : 56}}>
-                <div style={{
-                  display: 'flex', alignItems: 'baseline', gap: 16,
-                  paddingBottom: 12, borderBottom: `1px solid ${dark ? 'rgba(253,252,248,0.18)' : 'rgba(17,16,16,0.14)'}`,
-                  marginBottom: 16, fontFamily: 'JetBrains Mono, monospace',
+                <div className="flex flex-wrap items-baseline gap-3 md:gap-4 pb-3 mb-4 border-b" style={{
+                  borderColor: dark ? 'rgba(253,252,248,0.18)' : 'rgba(17,16,16,0.14)',
+                  fontFamily: 'JetBrains Mono, monospace',
                   fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase',
                   color: dark ? AR_PURPLE_300 : AR_PURPLE,
                 }}>
                   <span>Chapter {String(ci + 1).padStart(2, '0')}</span>
                   <span style={{color: fg, fontFamily: '"Instrument Serif", serif', fontStyle: 'italic', fontSize: 18, letterSpacing: 0, textTransform: 'none'}}>{c.title}</span>
-                  <span style={{marginLeft: 'auto'}}>{c.note}</span>
+                  <span className="md:ml-auto w-full md:w-auto">{c.note}</span>
                 </div>
                 <GalleryGrid items={c.items} dark={dark} />
               </div>

@@ -13,8 +13,8 @@ export default async function ContactPage() {
         titleAccent="conversation."
         lede="Most engagements start with a single conversation — what you’re trying to do, what’s in your way, whether we’re a fit. No brief required. If we’re not the right team, we’ll point you at one that is."
       />
-      <section className="bg-paper px-[clamp(24px,4vw,56px)] py-24">
-        <div className="max-w-content mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12">
+      <section className="bg-paper px-6 md:px-[clamp(24px,4vw,56px)] py-12 md:py-24">
+        <div className="max-w-content mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 md:gap-12">
           <aside className="space-y-6">
             <div>
               <div className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink-400">Studio</div>

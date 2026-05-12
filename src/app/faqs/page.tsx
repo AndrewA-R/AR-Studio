@@ -36,12 +36,12 @@ export default async function FaqsPage() {
   return (
     <PageShell>
       <PageHero kicker="§ FAQs" title="The questions." titleAccent="And the honest answers." />
-      <section className="bg-paper px-[clamp(24px,4vw,56px)] py-24">
+      <section className="bg-paper px-6 md:px-[clamp(24px,4vw,56px)] py-12 md:py-24">
         <div className="max-w-content mx-auto divide-y divide-ink/10 border-t-2 border-ink">
           {list.map((f, i) => (
-            <details key={f._id || i} className="py-6 group">
-              <summary className="cursor-pointer list-none flex justify-between items-baseline gap-6">
-                <h2 className="m-0 max-w-[40ch] text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(24px,2.4vw,32px)", lineHeight: 1.2, fontWeight: 400 }}>
+            <details key={f._id || i} className="py-5 md:py-6 group">
+              <summary className="cursor-pointer list-none flex justify-between items-baseline gap-4 md:gap-6">
+                <h2 className="m-0 max-w-[40ch] text-ink" style={{ fontFamily: '"Instrument Serif", serif', fontSize: "clamp(20px, 4.4vw, 32px)", lineHeight: 1.2, fontWeight: 400 }}>
                   {f.question}
                 </h2>
                 <span className="font-mono text-xs text-ink-400 group-open:rotate-45 transition-transform">+</span>

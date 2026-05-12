@@ -14,12 +14,11 @@ export default function CaseSectionHeader({n, kicker, title, lede, dark = false,
   // title. text-wrap: balance evens out line breaks visually.
   const TITLE_MAX = 760;
   const LEDE_MAX = 620;
+  const splitCols = align === 'split' ? 'md:grid-cols-[1fr_2fr]' : '';
   return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: align === 'split' ? '1fr 2fr' : '1fr',
-      gap: 56, alignItems: 'baseline', marginBottom: 40,
-    }}>
+    <div
+      className={`grid grid-cols-1 ${splitCols} gap-4 md:gap-14 items-baseline mb-8 md:mb-10`}
+    >
       <div style={{fontFamily: 'JetBrains Mono, monospace', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: accent, display: 'flex', alignItems: 'center', gap: 10}}>
         {n && <span style={{opacity: 0.6}}>§{n}</span>}
         <span>{kicker}</span>
@@ -29,7 +28,7 @@ export default function CaseSectionHeader({n, kicker, title, lede, dark = false,
           <h2 style={{
             fontFamily: '"Instrument Serif", serif',
             fontWeight: 400,
-            fontSize: 'clamp(34px,4vw,56px)',
+            fontSize: 'clamp(28px, 6.5vw, 56px)',
             lineHeight: 1.04,
             letterSpacing: '-0.018em',
             margin: 0,
