@@ -216,7 +216,7 @@ export default function CaseGallery({n = '05', kicker = 'Executions', title, led
   const bg = dark ? AR_INK : AR_PAPER;
   const fg = dark ? AR_WHITE : AR_INK;
   return (
-    <section className="py-24 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: bg, color: fg}}>
+    <section className="py-8 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: bg, color: fg}}>
       <div style={{maxWidth: 1440, margin: '0 auto'}}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} lede={lede} dark={dark} />
         {chapters && chapters.length

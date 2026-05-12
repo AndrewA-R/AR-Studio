@@ -28,7 +28,7 @@ export default function CaseVideo({
   );
 
   return (
-    <section className="py-24 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{ background: AR_PAPER }}>
+    <section className="py-8 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{ background: AR_PAPER }}>
       <div style={{ maxWidth: 1440, margin: '0 auto' }}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} lede={lede} />
         {fullBleed ? (

@@ -15,7 +15,7 @@ export default function CaseBrandSystem({n = '06', kicker = 'The system', title,
     : (layoutSlots || ['01', '02', '03']).map((id) => ({label: id}));
 
   return (
-    <section className="py-24 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: AR_PAPER}}>
+    <section className="py-8 md:py-[88px] px-6 md:px-[clamp(24px,4vw,56px)]" style={{background: AR_PAPER}}>
       <div style={{maxWidth: 1440, margin: '0 auto'}}>
         <CaseSectionHeader n={n} kicker={kicker} title={title} lede={body} />
         <div className="brand-system-grid mt-6" style={{display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 16}}>
