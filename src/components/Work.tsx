@@ -6,7 +6,6 @@ export function Work({ cases }: { cases: CaseTileProps[] }) {
       <div className="max-w-wide mx-auto">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 pb-4 border-b-2 border-ink font-mono text-[11px] tracking-[0.22em] uppercase text-ink-400">
           <span>§ The work</span>
-          <span className="display-italic" style={{ fontSize: 18, letterSpacing: "normal", textTransform: "none" }}>Two engagements, in their own words.</span>
         </div>
         <div className="grid gap-16 mt-10">
           {cases.map((c) => <CaseTile key={c.slug} {...c} />)}
